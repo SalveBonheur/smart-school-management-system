@@ -1,0 +1,1396 @@
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 13:56:50'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 13:57:19'
+}
+{
+  message: 'Smart School Transport API running on port 3000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 13:57:19'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 13:57:19'
+}
+{
+  message: 'Admin Panel: http://localhost:3000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 13:57:19'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 13:57:20'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:02:53'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:03:36'
+}
+{
+  message: 'Smart School Transport API running on port 3000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:03:36'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:03:36'
+}
+{
+  message: 'Admin Panel: http://localhost:3000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:03:36'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:03:36'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:03:58'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:04:51'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:05:14'
+}
+{
+  message: 'Smart School Transport API running on port 3001',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:05:14'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:05:14'
+}
+{
+  message: 'Admin Panel: http://localhost:3001/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:05:14'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3001/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:05:14'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:06:07'
+}
+{
+  message: 'Smart School Transport API running on port 3000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:06:07'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:06:07'
+}
+{
+  message: 'Admin Panel: http://localhost:3000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:06:07'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:06:07'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:37:54'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:37:58'
+}
+{
+  message: 'Smart School Transport API running on port 3000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:37:58'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:37:58'
+}
+{
+  message: 'Admin Panel: http://localhost:3000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:37:58'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-19 14:37:58'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 06:15:20'
+}
+{
+  message: 'Smart School Transport API running on port 3000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 06:15:21'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 06:15:21'
+}
+{
+  message: 'Admin Panel: http://localhost:3000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 06:15:21'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 06:15:21'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 07:37:59'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 07:44:48'
+}
+{
+  message: 'Smart School Transport API running on port 3000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 07:44:48'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 07:44:48'
+}
+{
+  message: 'Admin Panel: http://localhost:3000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 07:44:48'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 07:44:48'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 14:06:54'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 14:07:08'
+}
+{
+  message: 'Smart School Transport API running on port 3000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 14:07:08'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 14:07:08'
+}
+{
+  message: 'Admin Panel: http://localhost:3000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 14:07:08'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 14:07:08'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 14:42:19'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 14:42:42'
+}
+{
+  message: 'Smart School Transport API running on port 3000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 14:42:42'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 14:42:42'
+}
+{
+  message: 'Admin Panel: http://localhost:3000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 14:42:42'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 14:42:42'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 14:51:46'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:02:34'
+}
+{
+  message: 'Smart School Transport API running on port 3000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:02:34'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:02:34'
+}
+{
+  message: 'Admin Panel: http://localhost:3000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:02:34'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:02:34'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:12:49'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:13:11'
+}
+{
+  message: 'Smart School Transport API running on port 3000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:13:11'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:13:11'
+}
+{
+  message: 'Admin Panel: http://localhost:3000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:13:11'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:13:11'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:18:31'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:18:44'
+}
+{
+  message: 'Smart School Transport API running on port 3000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:18:44'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:18:44'
+}
+{
+  message: 'Admin Panel: http://localhost:3000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:18:44'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 15:18:44'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 16:24:14'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 16:25:17'
+}
+{
+  message: 'Smart School Transport API running on port 3000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 16:25:17'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 16:25:17'
+}
+{
+  message: 'Admin Panel: http://localhost:3000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 16:25:17'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 16:25:17'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:06:39'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:38:56'
+}
+{
+  message: 'Smart School Transport API running on port 3000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:38:56'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:38:56'
+}
+{
+  message: 'Admin Panel: http://localhost:3000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:38:56'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:38:56'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:39:34'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:39:44'
+}
+{
+  message: 'Smart School Transport API running on port 3000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:39:44'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:39:44'
+}
+{
+  message: 'Admin Panel: http://localhost:3000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:39:44'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:39:44'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:42:14'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:42:30'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:43:13'
+}
+{
+  message: 'Smart School Transport API running on port 3000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:43:13'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:43:13'
+}
+{
+  message: 'Admin Panel: http://localhost:3000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:43:13'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 18:43:13'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:42:15'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:42:41'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:50:02'
+}
+{
+  message: 'Smart School Transport API running on port 3000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:50:02'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:50:02'
+}
+{
+  message: 'Admin Panel: http://localhost:3000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:50:02'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:50:02'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:50:30'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:50:57'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:50:58'
+}
+{
+  message: 'Smart School Transport API running on port 3001',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:50:58'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:50:58'
+}
+{
+  message: 'Admin Panel: http://localhost:3001/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:50:58'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3001/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:50:58'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:51:17'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:51:47'
+}
+{
+  message: 'Smart School Transport API running on port 3002',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:51:47'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:51:47'
+}
+{
+  message: 'Admin Panel: http://localhost:3002/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:51:47'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3002/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-20 20:51:47'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 07:37:15'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 07:58:04'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:02:31'
+}
+{
+  message: 'Smart School Transport API running on port 3003',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:02:31'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:02:31'
+}
+{
+  message: 'Admin Panel: http://localhost:3003/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:02:31'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3003/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:02:31'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:05:16'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:06:21'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:06:25'
+}
+{
+  message: 'Smart School Transport API running on port 3003',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:06:25'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:06:25'
+}
+{
+  message: 'Admin Panel: http://localhost:3003/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:06:25'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:3003/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:06:25'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:11:04'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:11:50'
+}
+{
+  message: 'Smart School Transport API running on port 8080',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:11:50'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:11:50'
+}
+{
+  message: 'Admin Panel: http://localhost:8080/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:11:50'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:8080/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:11:50'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 08:15:13'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 09:24:42'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 09:24:55'
+}
+{
+  message: 'Smart School Transport API running on port 8080',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 09:24:55'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 09:24:55'
+}
+{
+  message: 'Admin Panel: http://localhost:8080/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 09:24:55'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:8080/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-21 09:24:55'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:19:29'
+}
+{
+  message: 'Smart School Transport API running on port 8080',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:19:29'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:19:29'
+}
+{
+  message: 'Admin Panel: http://localhost:8080/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:19:29'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:8080/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:19:29'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:56:33'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:56:37'
+}
+{
+  message: 'Smart School Transport API running on port 8080',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:56:37'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:56:37'
+}
+{
+  message: 'Admin Panel: http://localhost:8080/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:56:37'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:8080/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:56:37'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:59:14'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:59:28'
+}
+{
+  message: 'Smart School Transport API running on port 5000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:59:28'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:59:28'
+}
+{
+  message: 'Admin Panel: http://localhost:5000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:59:28'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:5000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:59:28'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:59:42'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:59:46'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 18:59:52'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 19:00:23'
+}
+{
+  message: 'Smart School Transport API running on port 5000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 19:00:23'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 19:00:23'
+}
+{
+  message: 'Admin Panel: http://localhost:5000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 19:00:23'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:5000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 19:00:23'
+}
+{
+  message: 'SIGINT received, shutting down gracefully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 19:47:37'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 19:47:40'
+}
+{
+  message: 'Smart School Transport API running on port 5000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 19:47:40'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 19:47:40'
+}
+{
+  message: 'Admin Panel: http://localhost:5000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 19:47:40'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:5000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-22 19:47:40'
+}
+{
+  service: 'smart-school-transport',
+  message: 'Error occurred: Route /favicon.ico not found',
+  stack: 'NotFoundError: Route /favicon.ico not found\n' +
+    '    at notFound (C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\middleware\\errorHandler.js:234:19)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at trim_prefix (C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+    '    at C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+    '    at router.process_params (C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+    '    at next (C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+    '    at SendStream.error (C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\node_modules\\serve-static\\index.js:121:7)\n' +
+    '    at SendStream.emit (node:events:508:28)\n' +
+    '    at SendStream.error (C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\node_modules\\send\\index.js:270:17)\n' +
+    '    at SendStream.onStatError (C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\node_modules\\send\\index.js:417:12)',
+  url: '/favicon.ico',
+  method: 'GET',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36 Edg/147.0.0.0',
+  timestamp: '2026-04-22 19:47:52',
+  level: 'error'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 17:57:04'
+}
+{
+  message: 'Smart School Transport API running on port 5000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 17:57:04'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 17:57:04'
+}
+{
+  message: 'Admin Panel: http://localhost:5000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 17:57:04'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:5000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 17:57:04'
+}
+{
+  service: 'smart-school-transport',
+  code: 'ECONNREFUSED',
+  fatal: true,
+  level: 'error',
+  message: 'Failed to start server:',
+  stack: 'AggregateError [ECONNREFUSED]: \n' +
+    '    at internalConnectMultiple (node:net:1142:49)\n' +
+    '    at afterConnectMultiple (node:net:1723:7)',
+  timestamp: '2026-04-23 19:58:46'
+}
+{
+  service: 'smart-school-transport',
+  code: 'ECONNREFUSED',
+  fatal: true,
+  level: 'error',
+  message: 'Failed to start server:',
+  stack: 'AggregateError [ECONNREFUSED]: \n' +
+    '    at internalConnectMultiple (node:net:1142:49)\n' +
+    '    at afterConnectMultiple (node:net:1723:7)',
+  timestamp: '2026-04-23 20:04:23'
+}
+{
+  service: 'smart-school-transport',
+  code: 'ECONNREFUSED',
+  fatal: true,
+  level: 'error',
+  message: 'Failed to start server:',
+  stack: 'AggregateError [ECONNREFUSED]: \n' +
+    '    at internalConnectMultiple (node:net:1142:49)\n' +
+    '    at afterConnectMultiple (node:net:1723:7)',
+  timestamp: '2026-04-23 20:20:19'
+}
+{
+  service: 'smart-school-transport',
+  code: 'ECONNREFUSED',
+  fatal: true,
+  level: 'error',
+  message: 'Failed to start server:',
+  stack: 'AggregateError [ECONNREFUSED]: \n' +
+    '    at internalConnectMultiple (node:net:1142:49)\n' +
+    '    at afterConnectMultiple (node:net:1723:7)',
+  timestamp: '2026-04-23 20:31:38'
+}
+{
+  service: 'smart-school-transport',
+  code: 'ECONNREFUSED',
+  fatal: true,
+  level: 'error',
+  message: 'Failed to start server:',
+  stack: 'AggregateError [ECONNREFUSED]: \n' +
+    '    at internalConnectMultiple (node:net:1142:49)\n' +
+    '    at afterConnectMultiple (node:net:1723:7)',
+  timestamp: '2026-04-23 20:31:38'
+}
+{
+  service: 'smart-school-transport',
+  code: 'ECONNREFUSED',
+  fatal: true,
+  level: 'error',
+  message: 'Failed to start server:',
+  stack: 'AggregateError [ECONNREFUSED]: \n' +
+    '    at internalConnectMultiple (node:net:1142:49)\n' +
+    '    at afterConnectMultiple (node:net:1723:7)',
+  timestamp: '2026-04-23 20:31:38'
+}
+{
+  service: 'smart-school-transport',
+  code: 'ECONNREFUSED',
+  fatal: true,
+  level: 'error',
+  message: 'Failed to start server:',
+  stack: 'AggregateError [ECONNREFUSED]: \n' +
+    '    at internalConnectMultiple (node:net:1142:49)\n' +
+    '    at afterConnectMultiple (node:net:1723:7)',
+  timestamp: '2026-04-23 20:31:38'
+}
+{
+  service: 'smart-school-transport',
+  code: 'ECONNREFUSED',
+  fatal: true,
+  level: 'error',
+  message: 'Failed to start server:',
+  stack: 'AggregateError [ECONNREFUSED]: \n' +
+    '    at internalConnectMultiple (node:net:1142:49)\n' +
+    '    at afterConnectMultiple (node:net:1723:7)',
+  timestamp: '2026-04-23 20:31:38'
+}
+{
+  service: 'smart-school-transport',
+  code: 'ECONNREFUSED',
+  fatal: true,
+  level: 'error',
+  message: 'Failed to start server:',
+  stack: 'AggregateError [ECONNREFUSED]: \n' +
+    '    at internalConnectMultiple (node:net:1142:49)\n' +
+    '    at afterConnectMultiple (node:net:1723:7)',
+  timestamp: '2026-04-23 20:31:42'
+}
+{
+  service: 'smart-school-transport',
+  code: 'ECONNREFUSED',
+  fatal: true,
+  level: 'error',
+  message: 'Failed to start server:',
+  stack: 'AggregateError [ECONNREFUSED]: \n' +
+    '    at internalConnectMultiple (node:net:1142:49)\n' +
+    '    at afterConnectMultiple (node:net:1723:7)',
+  timestamp: '2026-04-23 20:31:42'
+}
+{
+  service: 'smart-school-transport',
+  code: 'ECONNREFUSED',
+  fatal: true,
+  level: 'error',
+  message: 'Failed to start server:',
+  stack: 'AggregateError [ECONNREFUSED]: \n' +
+    '    at internalConnectMultiple (node:net:1142:49)\n' +
+    '    at afterConnectMultiple (node:net:1723:7)',
+  timestamp: '2026-04-23 20:31:42'
+}
+{
+  service: 'smart-school-transport',
+  code: 'ECONNREFUSED',
+  fatal: true,
+  level: 'error',
+  message: 'Failed to start server:',
+  stack: 'AggregateError [ECONNREFUSED]: \n' +
+    '    at internalConnectMultiple (node:net:1142:49)\n' +
+    '    at afterConnectMultiple (node:net:1723:7)',
+  timestamp: '2026-04-23 20:31:42'
+}
+{
+  service: 'smart-school-transport',
+  code: 'ECONNREFUSED',
+  fatal: true,
+  level: 'error',
+  message: 'Failed to start server:',
+  stack: 'AggregateError [ECONNREFUSED]: \n' +
+    '    at internalConnectMultiple (node:net:1142:49)\n' +
+    '    at afterConnectMultiple (node:net:1723:7)',
+  timestamp: '2026-04-23 20:31:53'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 20:33:28'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 20:34:45'
+}
+{
+  message: 'Smart School Transport API running on port 5000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 20:34:45'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 20:34:45'
+}
+{
+  message: 'Admin Panel: http://localhost:5000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 20:34:45'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:5000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 20:34:45'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 20:35:34'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 20:35:34'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 20:35:34'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 20:35:34'
+}
+{
+  message: 'Smart School Transport API running on port 5000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 20:35:34'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 20:35:34'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 20:35:34'
+}
+{
+  message: 'Admin Panel: http://localhost:5000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 20:35:34'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:5000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 20:35:34'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-23 20:35:34'
+}
+{
+  message: 'Database connected successfully',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-24 09:11:24'
+}
+{
+  message: 'Smart School Transport API running on port 5000',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-24 09:11:24'
+}
+{
+  message: 'Environment: development',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-24 09:11:24'
+}
+{
+  message: 'Admin Panel: http://localhost:5000/admin',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-24 09:11:24'
+}
+{
+  message: 'Professional Admin Panel: http://localhost:5000/admin-pro',
+  level: 'info',
+  service: 'smart-school-transport',
+  timestamp: '2026-04-24 09:11:24'
+}
+{
+  service: 'smart-school-transport',
+  message: 'Error occurred: Route /favicon.ico not found',
+  stack: 'NotFoundError: Route /favicon.ico not found\n' +
+    '    at notFound (file:///C:/Users/user/OneDrive/Desktop/smart-school-transport-system/middleware/errorHandler.js:234:19)\n' +
+    '    at Layer.handle [as handle_request] (C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+    '    at trim_prefix (C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+    '    at C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+    '    at router.process_params (C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+    '    at next (C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+    '    at SendStream.error (C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\node_modules\\serve-static\\index.js:121:7)\n' +
+    '    at SendStream.emit (node:events:508:28)\n' +
+    '    at SendStream.error (C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\node_modules\\send\\index.js:270:17)\n' +
+    '    at SendStream.onStatError (C:\\Users\\user\\OneDrive\\Desktop\\smart-school-transport-system\\node_modules\\send\\index.js:417:12)',
+  url: '/favicon.ico',
+  method: 'GET',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36',
+  timestamp: '2026-04-24 09:21:27',
+  level: 'error'
+}
+{
+  service: 'smart-school-transport',
+  code: 'ECONNREFUSED',
+  fatal: true,
+  level: 'error',
+  message: 'Failed to start server:',
+  stack: 'AggregateError [ECONNREFUSED]: \n' +
+    '    at internalConnectMultiple (node:net:1142:49)\n' +
+    '    at afterConnectMultiple (node:net:1723:7)',
+  timestamp: '2026-04-24 18:16:47'
+}

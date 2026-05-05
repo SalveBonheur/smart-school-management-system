@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Dashboard - Smart School Transport</title>
+    <link rel="stylesheet" href="css/parent-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Background -->
+        <div class="dashboard-background">
+            <div class="glass-overlay"></div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-bus"></i>
+                    <h2>Smart Transport</h2>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-details">
+                        <h3 id="parentName">Parent Name</h3>
+                        <span class="role">Parent</span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item active" data-section="dashboard">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-section="profile">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-user"></i>
+                            <span>Child Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-section="attendance">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Attendance</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-section="payments">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Payments</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-section="notifications">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-bell"></i>
+                            <span>Notifications</span>
+                            <span class="notification-badge" id="notificationBadge">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-section="transport-card">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-id-card"></i>
+                            <span>Transport Card</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title">Dashboard</h1>
+                </div>
+                <div class="top-bar-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search..." id="globalSearch">
+                    </div>
+                    <div class="header-actions">
+                        <button class="icon-btn" onclick="refreshData()">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                        <button class="icon-btn" onclick="showNotifications()">
+                            <i class="fas fa-bell"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Sections -->
+            <div class="content-wrapper">
+                <!-- Dashboard Section -->
+                <section id="dashboard-section" class="content-section active">
+                    <div class="section-header">
+                        <h2>Welcome Back!</h2>
+                        <p>Track your child's transport information</p>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-child"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="studentName">Student Name</h3>
+                                <p id="studentGrade">Grade</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-bus"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="busNumber">Bus Number</h3>
+                                <p id="routeName">Route Name</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="driverName">Driver Name</h3>
+                                <p id="driverPhone">Driver Phone</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="pickupLocation">Pickup Location</h3>
+                                <p>Home Address</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="activity-section">
+                        <h3>Recent Activity</h3>
+                        <div class="activity-list" id="recentActivity">
+                            <div class="activity-item">
+                                <div class="activity-icon success">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="activity-info">
+                                    <strong>No recent activity</strong>
+                                    <small>Activity will appear here</small>
+                                    <span class="activity-time">Just now</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Profile Section -->
+                <section id="profile-section" class="content-section">
+                    <div class="section-header">
+                        <h2>Child Profile</h2>
+                        <p>View your child's complete information</p>
+                    </div>
+
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar">
+                                <i class="fas fa-child"></i>
+                            </div>
+                            <div class="profile-info">
+                                <h3 id="profileStudentName">Student Name</h3>
+                                <p id="profileStudentId">Student ID</p>
+                            </div>
+                        </div>
+
+                        <div class="profile-details">
+                            <div class="detail-group">
+                                <h4>Academic Information</h4>
+                                <div class="detail-item">
+                                    <label>Grade:</label>
+                                    <span id="profileGrade">Grade</span>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Address:</label>
+                                    <span id="profileAddress">Address</span>
+                                </div>
+                            </div>
+
+                            <div class="detail-group">
+                                <h4>Transport Information</h4>
+                                <div class="detail-item">
+                                    <label>Bus Number:</label>
+                                    <span id="profileBusNumber">Bus Number</span>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Route:</label>
+                                    <span id="profileRouteName">Route Name</span>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Pickup Location:</label>
+                                    <span id="profilePickupLocation">Home Address</span>
+                                </div>
+                            </div>
+
+                            <div class="detail-group">
+                                <h4>Driver Information</h4>
+                                <div class="detail-item">
+                                    <label>Driver Name:</label>
+                                    <span id="profileDriverName">Driver Name</span>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Driver Phone:</label>
+                                    <span id="profileDriverPhone">Driver Phone</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Attendance Section -->
+                <section id="attendance-section" class="content-section">
+                    <div class="section-header">
+                        <h2>Attendance Records</h2>
+                        <p>View your child's attendance history</p>
+                    </div>
+
+                    <div class="attendance-summary">
+                        <div class="summary-card">
+                            <div class="summary-icon present">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="summary-info">
+                                <h3 id="presentCount">0</h3>
+                                <p>Present Days</p>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-icon absent">
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <div class="summary-info">
+                                <h3 id="absentCount">0</h3>
+                                <p>Absent Days</p>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-icon late">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="summary-info">
+                                <h3 id="lateCount">0</h3>
+                                <p>Late Arrivals</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="attendance-table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Check In</th>
+                                    <th>Check Out</th>
+                                    <th>Status</th>
+                                    <th>Bus</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attendanceTableBody">
+                                <tr>
+                                    <td colspan="5" style="text-align: center; padding: 2rem;">
+                                        No attendance records available
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Payments Section -->
+                <section id="payments-section" class="content-section">
+                    <div class="section-header">
+                        <h2>Payment History</h2>
+                        <p>View payment records and balance</p>
+                    </div>
+
+                    <div class="payment-summary">
+                        <div class="summary-card">
+                            <div class="summary-icon paid">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="summary-info">
+                                <h3 id="totalPaid">RWF 0</h3>
+                                <p>Total Paid</p>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-icon unpaid">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="summary-info">
+                                <h3 id="totalUnpaid">RWF 0</h3>
+                                <p>Outstanding Balance</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="payment-table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Method</th>
+                                    <th>Status</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody id="paymentTableBody">
+                                <tr>
+                                    <td colspan="5" style="text-align: center; padding: 2rem;">
+                                        No payment records available
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Notifications Section -->
+                <section id="notifications-section" class="content-section">
+                    <div class="section-header">
+                        <h2>Notifications</h2>
+                        <p>Stay updated with your child's transport activities</p>
+                    </div>
+
+                    <div class="notification-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="boarding">Boarding</button>
+                        <button class="filter-btn" data-filter="arrival">Arrival</button>
+                        <button class="filter-btn" data-filter="payment">Payment</button>
+                    </div>
+
+                    <div class="notification-list" id="notificationList">
+                        <div class="notification-item">
+                            <div class="notification-icon info">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4>Welcome to Smart Transport</h4>
+                                <p>You can track your child's transport activities here</p>
+                                <span class="notification-time">Just now</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Transport Card Section -->
+                <section id="transport-card-section" class="content-section">
+                    <div class="section-header">
+                        <h2>Transport Card</h2>
+                        <p>Download your child's transport card</p>
+                    </div>
+
+                    <div class="transport-card-preview">
+                        <div class="card-front">
+                            <div class="card-header">
+                                <div class="card-logo">
+                                    <i class="fas fa-bus"></i>
+                                    <span>Smart Transport</span>
+                                </div>
+                                <div class="card-type">
+                                    <span>TRANSPORT CARD</span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="student-info">
+                                    <div class="student-avatar">
+                                        <i class="fas fa-child"></i>
+                                    </div>
+                                    <div class="student-details">
+                                        <h3 id="cardStudentName">Student Name</h3>
+                                        <p id="cardStudentId">Student ID</p>
+                                    </div>
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-detail">
+                                        <label>Grade:</label>
+                                        <span id="cardGrade">Grade</span>
+                                    </div>
+                                    <div class="card-detail">
+                                        <label>Bus:</label>
+                                        <span id="cardBusNumber">Bus Number</span>
+                                    </div>
+                                    <div class="card-detail">
+                                        <label>Route:</label>
+                                        <span id="cardRouteName">Route Name</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="card-validity">
+                                    <span>Valid for 2024-2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-actions">
+                        <button class="btn btn-primary" onclick="downloadTransportCard()">
+                            <i class="fas fa-download"></i>
+                            Download PDF
+                        </button>
+                        <button class="btn btn-outline" onclick="printTransportCard()">
+                            <i class="fas fa-print"></i>
+                            Print Card
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <span class="toast-icon"></span>
+        <span class="toast-message"></span>
+    </div>
+
+    <script src="js/parent-dashboard.js"></script>
+</body>
+</html>

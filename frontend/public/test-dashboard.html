@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard Test</h1>
+    
+    <div class="test-section">
+        <h2>JavaScript Loading Test</h2>
+        <div id="js-test">Testing...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>CSS Loading Test</h2>
+        <div id="css-test">Testing...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>API Connection Test</h2>
+        <div id="api-test">Testing...</div>
+    </div>
+
+    <script>
+        // Test JavaScript loading
+        document.getElementById('js-test').innerHTML = '<span class="success">✓ JavaScript loaded successfully</span>';
+        
+        // Test CSS loading
+        const testElement = document.createElement('div');
+        testElement.style.display = 'none';
+        testElement.className = 'content-section';
+        document.body.appendChild(testElement);
+        const styles = window.getComputedStyle(testElement);
+        const cssLoaded = styles.display === 'none';
+        document.getElementById('css-test').innerHTML = cssLoaded ? 
+            '<span class="success">✓ CSS loaded successfully</span>' : 
+            '<span class="error">✗ CSS not loaded properly</span>';
+        
+        // Test API connection
+        fetch('http://localhost:3006/api/admin/students')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('api-test').innerHTML = '<span class="success">✓ API connection successful</span>';
+            })
+            .catch(error => {
+                document.getElementById('api-test').innerHTML = '<span class="error">✗ API connection failed: ' + error.message + '</span>';
+            });
+    </script>
+</body>
+</html>

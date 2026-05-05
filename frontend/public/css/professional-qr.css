@@ -1,0 +1,580 @@
+/* ============================================
+   PROFESSIONAL QR CODE ATTENDANCE SYSTEM
+   Smart School Transport - Rwanda
+   ============================================ */
+
+/* QR Dashboard Grid */
+.qr-dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+/* QR Generator Section */
+.qr-generator-card {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+    border: 2px solid rgba(59, 130, 246, 0.2);
+    border-radius: 20px;
+    padding: 32px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 20px 60px rgba(31, 38, 135, 0.15);
+}
+
+.qr-generator-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.qr-generator-card h3 i {
+    background: linear-gradient(135deg, #3b82f6 0%, #9333ea 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.5rem;
+}
+
+/* QR Scanner Section */
+.qr-scanner-card {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+    border: 2px solid rgba(16, 185, 129, 0.2);
+    border-radius: 20px;
+    padding: 32px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 20px 60px rgba(31, 38, 135, 0.15);
+}
+
+.qr-scanner-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.qr-scanner-card h3 i {
+    background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.5rem;
+}
+
+/* QR Display Area */
+.qr-display-area {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-code-placeholder {
+    width: 200px;
+    height: 200px;
+    border: 3px dashed #e5e7eb;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    transition: all 0.3s ease;
+}
+
+.qr-code-placeholder:hover {
+    border-color: #3b82f6;
+    color: #3b82f6;
+}
+
+.qr-code-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 12px;
+}
+
+.qr-code-generated {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.qr-code-generated.show {
+    display: flex;
+}
+
+.qr-code-image {
+    width: 220px;
+    height: 220px;
+    background: white;
+    border-radius: 16px;
+    padding: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    margin-bottom: 16px;
+}
+
+/* QR Scanner Viewport */
+.qr-scanner-viewport {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+}
+
+.qr-scanner-viewport::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    border: 3px solid rgba(16, 185, 129, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+}
+
+.qr-scanner-viewport::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(16, 185, 129, 0.8) 50%, transparent 100%);
+    animation: scanLine 2s linear infinite;
+}
+
+@keyframes scanLine {
+    0%, 100% {
+        top: 20%;
+        opacity: 0;
+    }
+    50% {
+        top: 80%;
+        opacity: 1;
+    }
+}
+
+.qr-scanner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.qr-scanner-icon {
+    font-size: 4rem;
+    color: rgba(16, 185, 129, 0.6);
+    margin-bottom: 16px;
+}
+
+.qr-scanner-text {
+    color: #9ca3af;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+/* Student Selection Form */
+.qr-student-form {
+    display: grid;
+    gap: 16px;
+}
+
+.qr-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.qr-form-group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.qr-form-group select,
+.qr-form-group input {
+    padding: 14px 16px;
+    border: 2px solid rgba(229, 231, 235, 0.5);
+    border-radius: 12px;
+    font-size: 0.875rem;
+    color: #1f2937;
+    background: rgba(255, 255, 255, 0.8);
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.qr-form-group select:focus,
+.qr-form-group input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* QR Action Buttons */
+.qr-action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.qr-btn {
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+}
+
+.qr-btn-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #9333ea 100%);
+    color: white;
+}
+
+.qr-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.qr-btn-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.qr-btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+}
+
+.qr-btn-outline {
+    background: rgba(255, 255, 255, 0.8);
+    color: #6b7280;
+    border: 2px solid rgba(229, 231, 235, 0.5);
+}
+
+.qr-btn-outline:hover {
+    background: white;
+    border-color: #3b82f6;
+    color: #3b82f6;
+}
+
+/* QR Stats Section */
+.qr-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.qr-stat-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.qr-stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #1f2937 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+}
+
+.qr-stat-label {
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Recent Scans Table */
+.qr-recent-scans {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.qr-recent-scans h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qr-recent-scans h4 i {
+    color: #3b82f6;
+}
+
+.qr-scan-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.qr-scan-table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6b7280;
+    border-bottom: 2px solid rgba(229, 231, 235, 0.5);
+}
+
+.qr-scan-table td {
+    padding: 16px;
+    font-size: 0.875rem;
+    color: #374151;
+    border-bottom: 1px solid rgba(229, 231, 235, 0.3);
+}
+
+.qr-scan-table tr:hover td {
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.scan-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.scan-status.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
+}
+
+.scan-status.pending {
+    background: rgba(245, 158, 11, 0.1);
+    color: #d97706;
+}
+
+.scan-status.error {
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+}
+
+/* Student Info Card (shown after scan) */
+.student-info-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    display: none;
+    animation: slideUp 0.3s ease;
+}
+
+.student-info-card.show {
+    display: block;
+}
+
+.student-info-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.student-avatar-large {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6 0%, #9333ea 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.student-info-details h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.student-info-details p {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .qr-dashboard {
+        grid-template-columns: 1fr;
+    }
+    
+    .qr-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .qr-generator-card,
+    .qr-scanner-card {
+        padding: 20px;
+    }
+    
+    .qr-display-area {
+        padding: 24px;
+        min-height: 250px;
+    }
+    
+    .qr-scanner-viewport {
+        min-height: 250px;
+    }
+    
+    .qr-scanner-viewport::before {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .qr-action-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .qr-stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+    
+    .qr-stat-card {
+        padding: 16px;
+    }
+    
+    .qr-stat-value {
+        font-size: 1.5rem;
+    }
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] .qr-generator-card,
+[data-theme="dark"] .qr-scanner-card {
+    background: rgba(17, 24, 39, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .qr-generator-card h3,
+[data-theme="dark"] .qr-scanner-card h3 {
+    color: #f9fafb;
+}
+
+[data-theme="dark"] .qr-display-area {
+    background: rgba(31, 41, 55, 0.8);
+}
+
+[data-theme="dark"] .qr-form-group select,
+[data-theme="dark"] .qr-form-group input {
+    background: rgba(31, 41, 55, 0.8);
+    border-color: rgba(75, 85, 99, 0.5);
+    color: #f9fafb;
+}
+
+[data-theme="dark"] .qr-form-group select:focus,
+[data-theme="dark"] .qr-form-group input:focus {
+    background: rgba(31, 41, 55, 1);
+    border-color: #3b82f6;
+}
+
+[data-theme="dark"] .qr-stat-card {
+    background: rgba(31, 41, 55, 0.6);
+}
+
+[data-theme="dark"] .qr-stat-value {
+    background: linear-gradient(135deg, #f9fafb 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+[data-theme="dark"] .qr-recent-scans {
+    background: rgba(31, 41, 55, 0.6);
+}
+
+[data-theme="dark"] .qr-recent-scans h4 {
+    color: #f9fafb;
+}
+
+[data-theme="dark"] .qr-scan-table th {
+    color: #9ca3af;
+    border-bottom-color: rgba(75, 85, 99, 0.5);
+}
+
+[data-theme="dark"] .qr-scan-table td {
+    color: #d1d5db;
+    border-bottom-color: rgba(75, 85, 99, 0.3);
+}
+
+[data-theme="dark"] .student-info-card {
+    background: rgba(31, 41, 55, 0.95);
+}
+
+[data-theme="dark"] .student-info-details h4 {
+    color: #f9fafb;
+}
+
+[data-theme="dark"] .qr-btn-outline {
+    background: rgba(31, 41, 55, 0.8);
+    border-color: rgba(75, 85, 99, 0.5);
+    color: #d1d5db;
+}
+
+[data-theme="dark"] .qr-btn-outline:hover {
+    background: rgba(31, 41, 55, 1);
+    border-color: #3b82f6;
+    color: #3b82f6;
+}

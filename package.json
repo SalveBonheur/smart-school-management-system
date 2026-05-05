@@ -1,0 +1,98 @@
+{
+  "name": "smart-school-transport-system",
+  "version": "2.0.0",
+  "description": "A comprehensive school transportation management system with modern UI and advanced features",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "dev": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint backend/**/*.js",
+    "lint:fix": "eslint backend/**/*.js --fix",
+    "format": "prettier --write backend/**/*.js",
+    "db:setup": "cd backend && node database/setup.js",
+    "db:seed": "cd backend && node database/seed.js",
+    "db:migrate": "cd backend && node database/migrate.js",
+    "security:audit": "npm audit",
+    "security:fix": "npm audit fix",
+    "docs:generate": "cd backend && swagger-jsdoc -d swaggerDef.js routes/*.js -o api-docs.json",
+    "build": "npm run lint && npm run format",
+    "clean": "rm -rf backend/logs/*.log",
+    "precommit": "npm run lint && npm run test"
+  },
+  "keywords": [
+    "school",
+    "transport",
+    "management",
+    "system",
+    "nodejs",
+    "express",
+    "mysql",
+    "transportation"
+  ],
+  "author": "Smart School Transport Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "express-rate-limit": "^6.10.0",
+    "compression": "^1.7.4",
+    "mysql2": "^3.3.2",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "winston": "^3.9.0",
+    "winston-daily-rotate-file": "^4.7.1",
+    "dotenv": "^16.3.1",
+    "express-validator": "^7.0.1",
+    "multer": "^1.4.5-lts.1",
+    "uuid": "^9.0.0",
+    "moment": "^2.29.4",
+    "express-fileupload": "^1.4.0",
+    "validator": "^13.11.0",
+    "express-slow-down": "^1.6.0",
+    "express-mongo-sanitize": "^2.2.0",
+    "xss": "^1.0.14",
+    "hpp": "^0.2.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "eslint": "^8.44.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "prettier": "^3.0.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "jest": "^29.6.1",
+    "supertest": "^6.3.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/smart-school-transport-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/smart-school-transport-system/issues"
+  },
+  "homepage": "https://github.com/yourusername/smart-school-transport-system#readme",
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{js,css,html}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}

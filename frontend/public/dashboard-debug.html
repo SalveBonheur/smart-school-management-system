@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Debug</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+    <link rel="stylesheet" href="css/enhanced-dashboard.css">
+    <link rel="stylesheet" href="css/dashboard-modern.css">
+    <link rel="stylesheet" href="css/enhanced-tables.css">
+</head>
+<body>
+    <div class="admin-dashboard">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Admin Portal</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-item active" data-section="dashboard" onclick="showSection('dashboard')">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="nav-item" data-section="students" onclick="showSection('students')">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>Students</span>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main-content">
+            <!-- Top Bar -->
+            <header class="admin-top-bar">
+                <div class="welcome-message">
+                    <h2>Admin Dashboard</h2>
+                    <p>Debug Mode</p>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Dashboard Section -->
+                <section id="dashboard-section" class="content-section active">
+                    <div class="section-header">
+                        <h1>System Overview</h1>
+                        <p>Debug dashboard</p>
+                    </div>
+                    <div style="padding: 20px; background: #f0f0f0; border-radius: 8px;">
+                        <h3>Debug Information</h3>
+                        <div id="debug-info">Loading debug info...</div>
+                    </div>
+                </section>
+
+                <!-- Students Section -->
+                <section id="students-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Students Management</h1>
+                        <p>Debug students section</p>
+                    </div>
+                    <div style="padding: 20px; background: #f0f0f0; border-radius: 8px;">
+                        <h3>Students Debug</h3>
+                        <div id="students-debug">Loading students debug info...</div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Debug function
+        function showDebugInfo() {
+            const debugInfo = document.getElementById('debug-info');
+            const studentsDebug = document.getElementById('students-debug');
+            
+            // Check if sections exist
+            const dashboardSection = document.getElementById('dashboard-section');
+            const studentsSection = document.getElementById('students-section');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            debugInfo.innerHTML = `
+                <p><strong>Dashboard Section:</strong> ${dashboardSection ? '✓ Found' : '✗ Missing'}</p>
+                <p><strong>Students Section:</strong> ${studentsSection ? '✓ Found' : '✗ Missing'}</p>
+                <p><strong>Nav Items:</strong> ${navItems.length} found</p>
+                <p><strong>CSS Classes:</strong> ${dashboardSection ? dashboardSection.className : 'N/A'}</p>
+                <p><strong>ShowSection Function:</strong> ${typeof showSection}</p>
+            `;
+            
+            studentsDebug.innerHTML = `
+                <p><strong>Students Section:</strong> ${studentsSection ? '✓ Found' : '✗ Missing'}</p>
+                <p><strong>Current Class:</strong> ${studentsSection ? studentsSection.className : 'N/A'}</p>
+                <p><strong>Display Style:</strong> ${studentsSection ? window.getComputedStyle(studentsSection).display : 'N/A'}</p>
+            `;
+        }
+
+        // Show section function
+        window.showSection = function(sectionName) {
+            console.log('Showing section:', sectionName);
+            
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Show target section
+            const targetSection = document.getElementById(`${sectionName}-section`);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                console.log('Added active class to section:', sectionName);
+            } else {
+                console.error('Section not found:', sectionName + '-section');
+            }
+            
+            // Update active nav item
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.section === sectionName) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Update debug info
+            showDebugInfo();
+        };
+
+        // Initialize debug info when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            showDebugInfo();
+        });
+    </script>
+</body>
+</html>

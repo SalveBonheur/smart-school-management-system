@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Dashboard - Smart School Transport</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/driver-dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-bus"></i>
+                    <span>Driver Portal</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-item active" data-section="dashboard" onclick="showSection('dashboard')">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="nav-item" data-section="schedule" onclick="showSection('schedule')">
+                    <i class="fas fa-calendar"></i>
+                    <span>Schedule</span>
+                </div>
+                <div class="nav-item" data-section="attendance" onclick="showSection('attendance')">
+                    <i class="fas fa-clipboard-check"></i>
+                    <span>Attendance</span>
+                </div>
+                <div class="nav-item" data-section="notifications" onclick="showSection('notifications')">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </div>
+                <div class="nav-item" data-section="profile" onclick="showSection('profile')">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <img id="driverPhoto" src="https://via.placeholder.com/150" alt="Driver">
+                    </div>
+                    <div class="user-details">
+                        <span id="driverName">John Doe</span>
+                        <small>Driver</small>
+                    </div>
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <button class="menu-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="welcome-message">
+                    <h2>Welcome back, <span id="driverWelcomeName">Driver</span>!</h2>
+                    <p>Ready for today's route?</p>
+                </div>
+                <div class="top-bar-actions">
+                    <span class="time-display" id="currentTime">12:00 PM</span>
+                    <button class="btn-icon" onclick="refreshData()">
+                        <i class="fas fa-sync"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Dashboard Section -->
+                <section id="dashboard-section" class="content-section active">
+                    <div class="section-header">
+                        <h1>Driver Dashboard</h1>
+                        <p>Overview of your assigned route and today's activities</p>
+                    </div>
+
+                    <!-- Driver Info Cards -->
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-bus"></i>
+                            </div>
+                            <div class="info-content">
+                                <h3>Assigned Bus</h3>
+                                <p id="assignedBus">BUS-01</p>
+                                <small>Mercedes Sprinter</small>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <div class="info-content">
+                                <h3>Assigned Route</h3>
+                                <p id="assignedRoute">North Route</p>
+                                <small>25.5 km • 45 min</small>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="info-content">
+                                <h3>Students Today</h3>
+                                <p id="studentsCount">45</p>
+                                <small>On your route</small>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="info-content">
+                                <h3>Start Time</h3>
+                                <p id="startTime">7:00 AM</p>
+                                <small>First pickup</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Today's Schedule -->
+                    <div class="schedule-card">
+                        <h3>Today's Schedule</h3>
+                        <div class="schedule-list" id="scheduleList">
+                            <div class="schedule-item">
+                                <div class="schedule-time">7:00 AM</div>
+                                <div class="schedule-details">
+                                    <strong>First Pickup</strong>
+                                    <p>School Gate - Main Street</p>
+                                </div>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="schedule-time">7:15 AM</div>
+                                <div class="schedule-details">
+                                    <strong>Second Pickup</strong>
+                                    <p>Park Avenue - Oak Street</p>
+                                </div>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="schedule-time">7:30 AM</div>
+                                <div class="schedule-details">
+                                    <strong>Third Pickup</strong>
+                                    <p>Elm Street - Pine Road</p>
+                                </div>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="schedule-time">8:00 AM</div>
+                                <div class="schedule-details">
+                                    <strong>School Arrival</strong>
+                                    <p>Drop off at school</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <h3>Quick Actions</h3>
+                        <div class="actions-grid">
+                            <button class="action-btn" onclick="startTrip()">
+                                <i class="fas fa-play"></i>
+                                <span>Start Trip</span>
+                            </button>
+                            <button class="action-btn" onclick="markAllPresent()">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Mark All Present</span>
+                            </button>
+                            <button class="action-btn" onclick="emergencyAlert()">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Emergency Alert</span>
+                            </button>
+                            <button class="action-btn" onclick="viewRoute()">
+                                <i class="fas fa-map"></i>
+                                <span>View Route Map</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Schedule Section -->
+                <section id="schedule-section" class="content-section">
+                    <div class="section-header">
+                        <h1>My Schedule</h1>
+                        <p>View your weekly schedule and route details</p>
+                    </div>
+                    <div class="schedule-calendar">
+                        <div class="calendar-header">
+                            <button class="btn btn-outline" onclick="previousWeek()">
+                                <i class="fas fa-chevron-left"></i>
+                                Previous Week
+                            </button>
+                            <h3 id="currentWeek">Week of Oct 15, 2024</h3>
+                            <button class="btn btn-outline" onclick="nextWeek()">
+                                <i class="fas fa-chevron-right"></i>
+                                Next Week
+                            </button>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid">
+                            <!-- Calendar days will be generated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Attendance Section -->
+                <section id="attendance-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Attendance Management</h1>
+                        <p>Mark student attendance for today's route</p>
+                        <div class="header-actions">
+                            <input type="date" id="attendanceDate" class="date-input">
+                            <button class="btn btn-primary" onclick="loadAttendance()">
+                                <i class="fas fa-search"></i>
+                                Load Attendance
+                            </button>
+                        </div>
+                    </div>
+                    <div class="attendance-stats">
+                        <div class="stat-card">
+                            <h4>Total Students</h4>
+                            <p id="totalStudents">45</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Present</h4>
+                            <p id="presentStudents">42</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Absent</h4>
+                            <p id="absentStudents">3</p>
+                        </div>
+                    </div>
+                    <div class="attendance-table">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Student Name</th>
+                                    <th>Pickup</th>
+                                    <th>Dropoff</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attendanceTableBody">
+                                <!-- Attendance rows will be generated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Notifications Section -->
+                <section id="notifications-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Notifications</h1>
+                        <p>View your recent notifications and updates</p>
+                    </div>
+                    <div class="notifications-list" id="notificationsList">
+                        <div class="notification-item">
+                            <div class="notification-icon success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4>Route Updated</h4>
+                                <p>Your route has been updated with new stops</p>
+                                <small>2 hours ago</small>
+                            </div>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-icon warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4>Maintenance Reminder</h4>
+                                <p>Your bus is due for maintenance next week</p>
+                                <small>1 day ago</small>
+                            </div>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-icon info">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4>New Schedule</h4>
+                                <p>Your schedule for next week is now available</p>
+                                <small>3 days ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Profile Section -->
+                <section id="profile-section" class="content-section">
+                    <div class="section-header">
+                        <h1>My Profile</h1>
+                        <p>Manage your personal information and settings</p>
+                    </div>
+                    <div class="profile-content">
+                        <div class="profile-card">
+                            <div class="profile-header">
+                                <div class="profile-avatar">
+                                    <img id="profileAvatar" src="https://via.placeholder.com/150" alt="Profile">
+                                    <button class="btn btn-sm btn-outline" onclick="changePhoto()">
+                                        <i class="fas fa-camera"></i>
+                                        Change
+                                    </button>
+                                </div>
+                                <div class="profile-info">
+                                    <h3 id="profileName">John Doe</h3>
+                                    <p id="profileEmail">john.doe@email.com</p>
+                                    <p id="profilePhone">+1 (555) 123-4567</p>
+                                    <p id="profileLicense">DL-123456</p>
+                                    <span class="status-badge active">Active</span>
+                                </div>
+                            </div>
+                            <div class="profile-actions">
+                                <button class="btn btn-primary" onclick="editProfile()">
+                                    <i class="fas fa-edit"></i>
+                                    Edit Profile
+                                </button>
+                                <button class="btn btn-outline" onclick="changePassword()">
+                                    <i class="fas fa-lock"></i>
+                                    Change Password
+                                </button>
+                            </div>
+                        </div>
+                        <div class="profile-details">
+                            <div class="detail-group">
+                                <h4>Personal Information</h4>
+                                <div class="detail-item">
+                                    <label>Full Name:</label>
+                                    <span id="detailName">John Doe</span>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Address:</label>
+                                    <span id="detailAddress">123 Main Street, City, State</span>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Hire Date:</label>
+                                    <span id="detailHireDate">January 15, 2023</span>
+                                </div>
+                            </div>
+                            <div class="detail-group">
+                                <h4>Professional Information</h4>
+                                <div class="detail-item">
+                                    <label>License Number:</label>
+                                    <span id="detailLicense">DL-123456</span>
+                                </div>
+                                <div class="detail-item">
+                                    <label>License Expiry:</label>
+                                    <span id="detailLicenseExpiry">December 31, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon"></span>
+        <span class="toast-message"></span>
+    </div>
+
+    <script src="js/driver-dashboard.js"></script>
+</body>
+</html>
