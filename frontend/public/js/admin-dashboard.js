@@ -61,7 +61,7 @@ function getDataFromStorage(key) {
 // Update dashboard with real data from database
 async function updateDashboardWithRealData() {
     try {
-        const response = await fetch('http://localhost:3006/api/admin/dashboard/stats');
+        const response = await fetch('http://localhost:3003/api/admin/dashboard/stats');
         const result = await response.json();
         
         if (result.success) {
@@ -370,7 +370,7 @@ function loadDashboardData() {
 async function loadSystemStats() {
     try {
         const token = localStorage.getItem('adminToken');
-        const response = await fetch('http://localhost:3006/api/admin/dashboard/stats', {
+        const response = await fetch('http://localhost:3003/api/admin/dashboard/stats', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -730,7 +730,7 @@ function openStudentModal(studentId = null) {
             
             if (studentId) {
                 // Update existing student
-                response = await fetch(`http://localhost:3006/api/admin/students/${studentId}`, {
+                response = await fetch(`http://localhost:3003/api/admin/students/${studentId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -740,7 +740,7 @@ function openStudentModal(studentId = null) {
                 });
             } else {
                 // Create new student
-                response = await fetch('http://localhost:3006/api/admin/students', {
+                response = await fetch('http://localhost:3003/api/admin/students', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -774,7 +774,7 @@ async function deleteStudent(studentId) {
     if (confirm('Are you sure you want to delete this student?')) {
         try {
             const token = localStorage.getItem('adminToken');
-            const response = await fetch(`http://localhost:3006/api/admin/students/${studentId}`, {
+            const response = await fetch(`http://localhost:3003/api/admin/students/${studentId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -800,7 +800,7 @@ async function deleteStudent(studentId) {
 async function loadStudents() {
     try {
         const token = localStorage.getItem('adminToken');
-        const response = await fetch('http://localhost:3006/api/admin/students', {
+        const response = await fetch('http://localhost:3003/api/admin/students', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -1206,7 +1206,7 @@ document.head.appendChild(script);
 async function loadDrivers() {
     try {
         const token = localStorage.getItem('adminToken');
-        const response = await fetch('http://localhost:3006/api/admin/drivers', {
+        const response = await fetch('http://localhost:3003/api/admin/drivers', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -1271,7 +1271,7 @@ async function saveDriver(driverId) {
         let response;
         
         if (driverId) {
-            response = await fetch(`http://localhost:3006/api/admin/drivers/${driverId}`, {
+            response = await fetch(`http://localhost:3003/api/admin/drivers/${driverId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1280,7 +1280,7 @@ async function saveDriver(driverId) {
                 body: JSON.stringify(driverData)
             });
         } else {
-            response = await fetch('http://localhost:3006/api/admin/drivers', {
+            response = await fetch('http://localhost:3003/api/admin/drivers', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1309,7 +1309,7 @@ async function deleteDriver(driverId) {
     if (confirm('Are you sure you want to delete this driver?')) {
         try {
             const token = localStorage.getItem('adminToken');
-            const response = await fetch(`http://localhost:3006/api/admin/drivers/${driverId}`, {
+            const response = await fetch(`http://localhost:3003/api/admin/drivers/${driverId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -1336,7 +1336,7 @@ async function deleteDriver(driverId) {
 async function loadBuses() {
     try {
         const token = localStorage.getItem('adminToken');
-        const response = await fetch('http://localhost:3006/api/admin/buses', {
+        const response = await fetch('http://localhost:3003/api/admin/buses', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -1378,7 +1378,7 @@ async function loadBuses() {
 async function loadRoutes() {
     try {
         const token = localStorage.getItem('adminToken');
-        const response = await fetch('http://localhost:3006/api/admin/routes', {
+        const response = await fetch('http://localhost:3003/api/admin/routes', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -1420,7 +1420,7 @@ async function loadRoutes() {
 async function loadAttendance() {
     try {
         const token = localStorage.getItem('adminToken');
-        const response = await fetch('http://localhost:3006/api/admin/attendance', {
+        const response = await fetch('http://localhost:3003/api/admin/attendance', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -1455,7 +1455,7 @@ async function loadAttendance() {
 async function loadPayments() {
     try {
         const token = localStorage.getItem('adminToken');
-        const response = await fetch('http://localhost:3006/api/admin/payments', {
+        const response = await fetch('http://localhost:3003/api/admin/payments', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -1505,7 +1505,7 @@ function loadDriverApproval() {
 async function loadDashboardAnalytics() {
     try {
         const token = localStorage.getItem('adminToken');
-        const response = await fetch('http://localhost:3006/api/admin/dashboard/analytics', {
+        const response = await fetch('http://localhost:3003/api/admin/dashboard/analytics', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const result = await response.json();
@@ -1584,7 +1584,7 @@ async function loadQRAttendance() {
         if (date) params.append('date', date);
         if (busId) params.append('bus_id', busId);
         
-        const response = await fetch(`http://localhost:3006/api/attendance/qr?${params}`, {
+        const response = await fetch(`http://localhost:3003/api/attendance/qr?${params}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const result = await response.json();
@@ -1620,7 +1620,7 @@ async function searchStudentForQR() {
     
     try {
         const token = localStorage.getItem('adminToken');
-        const response = await fetch(`http://localhost:3006/api/admin/students?search=${encodeURIComponent(searchTerm)}`, {
+        const response = await fetch(`http://localhost:3003/api/admin/students?search=${encodeURIComponent(searchTerm)}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const result = await response.json();
@@ -1645,7 +1645,7 @@ async function searchStudentForQR() {
 async function generateQRCode(studentId, studentName) {
     try {
         const token = localStorage.getItem('adminToken');
-        const response = await fetch(`http://localhost:3006/api/qr-codes/generate/${studentId}`, {
+        const response = await fetch(`http://localhost:3003/api/qr-codes/generate/${studentId}`, {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -1680,7 +1680,7 @@ function printIDCard() {
 }
 
 function exportQRAttendance() {
-    window.open('http://localhost:3006/api/reports/export/attendance?format=csv', '_blank');
+    window.open('http://localhost:3003/api/reports/export/attendance?format=csv', '_blank');
 }
 
 // ==================== LIVE BUS STATUS ====================
@@ -1688,7 +1688,7 @@ function exportQRAttendance() {
 async function loadBusStatus() {
     try {
         const token = localStorage.getItem('adminToken');
-        const response = await fetch('http://localhost:3006/api/bus-status', {
+        const response = await fetch('http://localhost:3003/api/bus-status', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const result = await response.json();
@@ -1784,7 +1784,7 @@ async function loadMaintenance() {
         if (busId) params.append('bus_id', busId);
         if (status) params.append('status', status);
         
-        const response = await fetch(`http://localhost:3006/api/maintenance?${params}`, {
+        const response = await fetch(`http://localhost:3003/api/maintenance?${params}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const result = await response.json();
@@ -1825,7 +1825,7 @@ async function loadMaintenance() {
 async function loadMaintenanceAlerts() {
     try {
         const token = localStorage.getItem('adminToken');
-        const response = await fetch('http://localhost:3006/api/maintenance/alerts', {
+        const response = await fetch('http://localhost:3003/api/maintenance/alerts', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const result = await response.json();
@@ -1875,7 +1875,7 @@ async function saveMaintenance() {
         const data = Object.fromEntries(formData.entries());
         
         const token = localStorage.getItem('adminToken');
-        const response = await fetch('http://localhost:3006/api/maintenance', {
+        const response = await fetch('http://localhost:3003/api/maintenance', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -1903,7 +1903,7 @@ async function deleteMaintenance(id) {
     
     try {
         const token = localStorage.getItem('adminToken');
-        const response = await fetch(`http://localhost:3006/api/maintenance/${id}`, {
+        const response = await fetch(`http://localhost:3003/api/maintenance/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -1918,13 +1918,13 @@ async function deleteMaintenance(id) {
 }
 
 function exportMaintenance() {
-    window.open('http://localhost:3006/api/reports/export/maintenance?format=csv', '_blank');
+    window.open('http://localhost:3003/api/reports/export/maintenance?format=csv', '_blank');
 }
 
 async function loadBusesForDropdown(selectId) {
     try {
         const token = localStorage.getItem('adminToken');
-        const response = await fetch('http://localhost:3006/api/admin/buses', {
+        const response = await fetch('http://localhost:3003/api/admin/buses', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const result = await response.json();
@@ -1944,7 +1944,7 @@ async function loadBusesForDropdown(selectId) {
 // ==================== REPORT EXPORT FUNCTIONS ====================
 
 function exportStudentsReport() {
-    window.open('http://localhost:3006/api/reports/export/students?format=csv', '_blank');
+    window.open('http://localhost:3003/api/reports/export/students?format=csv', '_blank');
 }
 
 function exportStudentsPDF() {
@@ -1956,7 +1956,7 @@ function exportAttendanceReport() {
     const startDate = prompt('Enter start date (YYYY-MM-DD) or leave empty for all:');
     const endDate = prompt('Enter end date (YYYY-MM-DD) or leave empty for all:');
     
-    let url = 'http://localhost:3006/api/reports/export/attendance?format=csv';
+    let url = 'http://localhost:3003/api/reports/export/attendance?format=csv';
     if (startDate) url += `&start_date=${startDate}`;
     if (endDate) url += `&end_date=${endDate}`;
     
@@ -1970,7 +1970,7 @@ function exportAttendancePDF() {
 function exportPaymentsReport() {
     const status = prompt('Enter status filter (paid/pending/overdue) or leave empty for all:');
     
-    let url = 'http://localhost:3006/api/reports/export/payments?format=csv';
+    let url = 'http://localhost:3003/api/reports/export/payments?format=csv';
     if (status) url += `&status=${status}`;
     
     window.open(url, '_blank');
@@ -1981,7 +1981,7 @@ function exportPaymentsPDF() {
 }
 
 function exportRoutesReport() {
-    window.open('http://localhost:3006/api/reports/export/routes?format=csv', '_blank');
+    window.open('http://localhost:3003/api/reports/export/routes?format=csv', '_blank');
 }
 
 function exportRoutesPDF() {

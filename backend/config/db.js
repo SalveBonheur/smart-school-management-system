@@ -298,9 +298,11 @@ const createTables = async () => {
   }
 };
 
-// Database helper functions
+// Database helper functions - MySQL-compatible wrapper
 const query = async (sql, params = []) => {
-  return await db.all(sql, params);
+  const rows = await db.all(sql, params);
+  // Return array format compatible with MySQL [rows] destructuring
+  return [rows];
 };
 
 const run = async (sql, params = []) => {
@@ -318,4 +320,10 @@ export {
   run,
   get,
   db
+};
+
+export default {
+  query,
+  run,
+  get
 };

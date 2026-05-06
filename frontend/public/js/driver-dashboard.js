@@ -30,8 +30,8 @@ function initTopBarScroll() {
 // Initialize dashboard
 function initializeDashboard() {
     // Check authentication
-    const token = localStorage.getItem('driverToken');
-    const driverInfo = localStorage.getItem('driverInfo');
+    const token = localStorage.getItem('token');
+    const driverInfo = localStorage.getItem('userData');
     
     // Handle auto-login for newly registered drivers
     if (!token && driverInfo) {
@@ -180,8 +180,8 @@ async function loadDriverData() {
 // Load dashboard data
 async function loadDashboardData() {
     try {
-        const driverInfo = JSON.parse(localStorage.getItem('driverInfo'));
-        const token = localStorage.getItem('driverToken');
+        const driverInfo = JSON.parse(localStorage.getItem('userData'));
+        const token = localStorage.getItem('token');
         
         // Mock statistics for now (would be enhanced with real driver stats API)
         const stats = {
@@ -226,7 +226,7 @@ function animateCounter(elementId, target, isCurrency = false) {
 // Load schedule
 async function loadSchedule() {
     try {
-        const driverInfo = JSON.parse(localStorage.getItem('driverInfo'));
+        const driverInfo = JSON.parse(localStorage.getItem('userData'));
         
         // Mock schedule data for now (would be enhanced with real schedule API)
         const schedule = [
@@ -329,9 +329,9 @@ function viewSettings() {
 
 function logout() {
     if (confirm('Are you sure you want to logout?')) {
-        localStorage.removeItem('driverToken');
-        localStorage.removeItem('driverInfo');
-        window.location.href = 'driver-login.html';
+        localStorage.removeItem('token');
+        localStorage.removeItem('userData');
+        window.location.href = 'login.html';
     }
 }
 
@@ -377,13 +377,13 @@ function loadSettings() {
 
 // Load attendance data
 async function loadAttendance() {
-    const driverInfo = JSON.parse(localStorage.getItem('driverInfo') || '{}');
+    const driverInfo = JSON.parse(localStorage.getItem('userData') || '{}');
     const tbody = document.querySelector('#attendance-section tbody');
     
     if (tbody) {
         try {
-            const token = localStorage.getItem('driverToken');
-            const response = await fetch('http://localhost:3006/api/drivers/students', {
+            const token = localStorage.getItem('token');
+            const response = await fetch('http://localhost:3003/api/drivers/students', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -431,10 +431,10 @@ async function loadAttendance() {
 // Mark student attendance
 async function markAttendance(studentId, status) {
     try {
-        const token = localStorage.getItem('driverToken');
+        const token = localStorage.getItem('token');
         const today = new Date().toISOString().split('T')[0];
         
-        const response = await fetch('http://localhost:3006/api/drivers/attendance', {
+        const response = await fetch('http://localhost:3003/api/drivers/attendance', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -504,4 +504,55 @@ function loadNotifications() {
             </div>
         `).join('');
     }
+}
+
+// QR Code functions
+function generateNewQR() {
+    const driverInfoStr = localStorage.getItem('userData');
+    if (!driverInfoStr) return;
+    
+    const driver = JSON.parse(driverInfoStr);
+    const date = new Date().toISOString().split('T')[0];
+    
+    // Create a payload that parents will scan
+    const payload = JSON.stringify({
+        driverId: driver.id,
+        busId: driver.busId || 'BUS-UNKNOWN',
+        date: date,
+        session: new Date().getHours() < 12 ? 'morning' : 'afternoon'
+    });
+    
+    // Generate new QR Code via API
+    const qrImage = document.getElementById('qrImage');
+    if (qrImage) {
+        qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(payload)}`;
+        showToast('Generated new QR code successfully!', 'success');
+    }
+}
+
+function printQR() {
+    const qrImage = document.getElementById('qrImage');
+    if (!qrImage) return;
+
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+        <html>
+        <head>
+            <title>Print QR Code</title>
+            <style>
+                body { text-align: center; font-family: Arial, sans-serif; padding-top: 50px; }
+                img { width: 300px; height: 300px; }
+            </style>
+        </head>
+        <body>
+            <h1>Bus Attendance QR</h1>
+            <img src="${qrImage.src}" />
+            <p>Parents: Scan this code using the Parent Dashboard</p>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
+    setTimeout(() => {
+        printWindow.print();
+    }, 500);
 }

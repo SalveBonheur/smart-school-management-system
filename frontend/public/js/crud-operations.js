@@ -4,7 +4,7 @@
  * for the Smart School Transport Management System
  */
 
-const API_BASE_URL = 'http://localhost:3006/api';
+const API_BASE_URL = 'http://localhost:3003/api';
 let currentEditId = null;
 let currentSection = null;
 
@@ -81,8 +81,8 @@ async function apiCall(endpoint, method = 'GET', data = null) {
         const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
         
         if (response.status === 401) {
-            localStorage.removeItem('adminToken');
-            window.location.href = 'admin-login.html';
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
             return null;
         }
 

@@ -214,7 +214,7 @@ async function loadAttendanceData() {
     const parent = JSON.parse(parentInfo);
     
     try {
-        const response = await fetch(`http://localhost:3006/api/parents/attendance/${parent.id}`);
+        const response = await fetch(`http://localhost:3003/api/parents/attendance/${parent.id}`);
         const result = await response.json();
         
         if (result.success) {
@@ -291,7 +291,7 @@ async function loadPaymentsData() {
     const parent = JSON.parse(parentInfo);
     
     try {
-        const response = await fetch(`http://localhost:3006/api/parents/payments/${parent.id}`);
+        const response = await fetch(`http://localhost:3003/api/parents/payments/${parent.id}`);
         const result = await response.json();
         
         if (result.success) {

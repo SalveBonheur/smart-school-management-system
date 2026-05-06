@@ -77,7 +77,7 @@ async function loadStudentsForQR() {
     
     try {
         const token = localStorage.getItem('adminToken');
-        const response = await fetch('http://localhost:3006/api/admin/students', {
+        const response = await fetch('http://localhost:3003/api/admin/students', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

@@ -25,12 +25,12 @@ router.post('/drivers/register', async (req, res) => {
         }
         
         // Check if driver already exists
-        const [existingDriver] = await db.query(
+        const [existingDrivers] = await db.query(
             'SELECT id FROM drivers WHERE email = ? OR license_number = ?',
             [email, licenseNumber]
         );
         
-        if (existingDriver.length > 0) {
+        if (existingDrivers.length > 0) {
             return res.status(400).json({
                 success: false,
                 message: 'Driver with this email or license number already exists'
@@ -41,17 +41,17 @@ router.post('/drivers/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 12);
         
         // Insert new driver with pending status
-        const [result] = await db.query(`
+        const result = await db.run(`
             INSERT INTO drivers (
                 full_name, email, phone, license_number, address, 
                 password, status, profile_photo, hire_date
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURDATE())
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, date('now'))
         `, [fullName, email, phone, licenseNumber, address, hashedPassword, 'pending', null]);
         
         // Get the created driver
         const [newDriver] = await db.query(
             'SELECT id, full_name, email, status FROM drivers WHERE id = ?',
-            [result.insertId]
+            [result.lastID]
         );
         
         res.status(201).json({
@@ -88,7 +88,7 @@ router.post('/drivers/login', async (req, res) => {
             [email]
         );
         
-        if (drivers.length === 0) {
+        if (!drivers || drivers.length === 0) {
             return res.status(401).json({
                 success: false,
                 message: 'Invalid email or password'
@@ -171,7 +171,7 @@ router.post('/admins/login', async (req, res) => {
             [email]
         );
         
-        if (admins.length === 0) {
+        if (!admins || admins.length === 0) {
             return res.status(401).json({
                 success: false,
                 message: 'Invalid email or password'
@@ -256,7 +256,7 @@ router.put('/drivers/:id/approve', authenticateToken, authorizeRoles(['super_adm
             [id, 'pending']
         );
         
-        if (driver.length === 0) {
+        if (!driver || driver.length === 0) {
             return res.status(404).json({
                 success: false,
                 message: 'Driver not found or already approved'
@@ -295,7 +295,7 @@ router.put('/drivers/:id/reject', authenticateToken, authorizeRoles(['super_admi
             [id, 'pending']
         );
         
-        if (driver.length === 0) {
+        if (!driver || driver.length === 0) {
             return res.status(404).json({
                 success: false,
                 message: 'Driver not found or already processed'
@@ -340,7 +340,7 @@ router.post('/drivers/forgot-password', async (req, res) => {
             [email]
         );
         
-        if (drivers.length === 0) {
+        if (!drivers || drivers.length === 0) {
             return res.status(404).json({
                 success: false,
                 message: 'No account found with this email'
@@ -382,7 +382,7 @@ router.post('/admins/forgot-password', async (req, res) => {
             [email]
         );
         
-        if (admins.length === 0) {
+        if (!admins || admins.length === 0) {
             return res.status(404).json({
                 success: false,
                 message: 'No admin account found with this email'
@@ -458,7 +458,7 @@ router.get('/drivers/profile', authenticateToken, async (req, res) => {
             [req.user.id]
         );
         
-        if (drivers.length === 0) {
+        if (!drivers || drivers.length === 0) {
             return res.status(404).json({
                 success: false,
                 message: 'Driver not found'
@@ -503,6 +503,105 @@ router.get('/drivers/profile', authenticateToken, async (req, res) => {
             success: false,
             message: 'Server error'
         });
+    }
+});
+
+// Unified Login for all roles
+router.post('/unified/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        
+        if (!email || !password) {
+            return res.status(400).json({ success: false, message: 'Email and password are required' });
+        }
+        
+        // Check Admins
+        let [users] = await db.query('SELECT *, "admin" as role FROM admins WHERE email = ?', [email]);
+        
+        // Check Drivers if not found in Admins
+        if (users.length === 0) {
+            [users] = await db.query('SELECT *, "driver" as role FROM drivers WHERE email = ?', [email]);
+        }
+        
+        // Check Parents if not found in Drivers
+        if (users.length === 0) {
+            [users] = await db.query('SELECT *, "parent" as role FROM parents WHERE email = ?', [email]);
+        }
+        
+        if (users.length === 0) {
+            return res.status(401).json({ success: false, message: 'Invalid email or password' });
+        }
+        
+        const user = users[0];
+        
+        // Check password
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            return res.status(401).json({ success: false, message: 'Invalid email or password' });
+        }
+        
+        // Generate JWT token
+        const token = jwt.sign(
+            { 
+                id: user.id, 
+                email: user.email, 
+                role: user.role,
+                fullName: user.full_name || user.fullName
+            },
+            JWT_SECRET,
+            { expiresIn: '24h' }
+        );
+        
+        // Remove password from response
+        const { password: _, ...userWithoutPassword } = user;
+        
+        res.json({
+            success: true,
+            message: 'Login successful',
+            token,
+            user: userWithoutPassword
+        });
+        
+    } catch (error) {
+        console.error('Unified login error:', error);
+        res.status(500).json({ success: false, message: 'Server error during login' });
+    }
+});
+
+// Parent Registration
+router.post('/parents/register', async (req, res) => {
+    try {
+        const { fullName, email, phone, password, studentId } = req.body;
+        
+        if (!fullName || !email || !password) {
+            return res.status(400).json({ success: false, message: 'Full name, email, and password are required' });
+        }
+        
+        // Check if parent already exists
+        const [existing] = await db.query('SELECT id FROM parents WHERE email = ?', [email]);
+        if (existing.length > 0) {
+            return res.status(400).json({ success: false, message: 'Parent with this email already exists' });
+        }
+        
+        const hashedPassword = await bcrypt.hash(password, 12);
+        
+        // Insert new parent
+        const result = await db.run(`
+            INSERT INTO parents (full_name, email, phone, student_id, password, status) 
+            VALUES (?, ?, ?, ?, ?, 'active')
+        `, [fullName, email, phone, studentId || null, hashedPassword]);
+        
+        const [newParent] = await db.query('SELECT id, full_name, email FROM parents WHERE id = ?', [result.lastID]);
+        
+        res.status(201).json({
+            success: true,
+            message: 'Parent registration successful!',
+            data: newParent[0]
+        });
+        
+    } catch (error) {
+        console.error('Parent registration error:', error);
+        res.status(500).json({ success: false, message: 'Server error during registration' });
     }
 });
 
