@@ -11,6 +11,7 @@ import AboutPage from './pages/AboutPage';
 // Auth Pages
 import LoginPage from './pages/auth/LoginPage';
 import DriverRegisterPage from './pages/auth/DriverRegisterPage';
+import RegisterPage from './pages/auth/RegisterPage';
 
 // Admin Pages
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -51,6 +52,7 @@ const App = () => {
       
       {/* Auth Routes */}
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
       <Route path="/register/driver" element={<DriverRegisterPage />} />
       
       {/* Admin Routes */}

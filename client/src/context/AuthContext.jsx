@@ -64,6 +64,31 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const unifiedLogin = async (credentials) => {
+    try {
+      const response = await authAPI.login(credentials);
+      const { token, user: userData } = response.data;
+      
+      if (token && userData) {
+        localStorage.setItem('token', token);
+        localStorage.setItem('userData', JSON.stringify(userData));
+        
+        setUser(userData);
+        setIsAuthenticated(true);
+        
+        return { success: true, user: userData };
+      }
+      
+      return { success: false, message: 'Invalid response from server' };
+    } catch (error) {
+      console.error('Unified login error:', error);
+      return { 
+        success: false, 
+        message: error.response?.data?.message || 'Login failed. Please try again.' 
+      };
+    }
+  };
+
   const driverLogin = async (credentials) => {
     try {
       const response = await authAPI.driverLogin(credentials);
@@ -127,6 +152,38 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const registerParent = async (data) => {
+    try {
+      // For now, simulate parent registration with auto-login
+      // In a real implementation, this would call a parent registration API
+      const mockParentData = {
+        id: Date.now(),
+        email: data.email,
+        fullName: data.fullName,
+        phone: data.phone,
+        address: data.address,
+        role: 'parent',
+        status: 'active'
+      };
+      
+      const mockToken = 'mock-parent-token-' + Date.now();
+      
+      localStorage.setItem('token', mockToken);
+      localStorage.setItem('userData', JSON.stringify(mockParentData));
+      
+      setUser(mockParentData);
+      setIsAuthenticated(true);
+      
+      return { success: true, user: mockParentData };
+    } catch (error) {
+      console.error('Parent registration error:', error);
+      return { 
+        success: false, 
+        message: error.response?.data?.message || 'Registration failed. Please try again.' 
+      };
+    }
+  };
+
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userData');
@@ -147,9 +204,11 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated,
     isLoading,
     login,
+    unifiedLogin,
     driverLogin,
     parentLogin,
     registerDriver,
+    registerParent,
     logout,
     hasRole,
   };

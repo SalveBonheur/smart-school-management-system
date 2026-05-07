@@ -1,8 +1,175 @@
 # Smart School Transport Management System
 
-🎓 **A Complete, Production-Ready School Transportation Management Solution**
+A modern, full-stack school transportation management system built with React, Node.js, Express, and MySQL.
 
-Transform your school's transportation operations with this comprehensive, modern web application designed for efficiency, safety, and ease of use.
+## 🚀 Features
+
+- **Role-Based Access**: Separate dashboards for Admin, Driver, and Parent roles
+- **Real-Time Tracking**: Track school buses and student attendance
+- **Payment Management**: Handle transportation fees and payments
+- **Route Management**: Optimize bus routes and schedules
+- **Attendance System**: QR code-based student attendance tracking
+- **Modern UI**: Responsive React frontend with Tailwind CSS
+- **Production Ready**: Optimized for deployment on Render and Railway
+
+## 🌐 Deployment to Render + Railway
+
+### Quick Deployment Steps
+
+1. **Push to GitHub**: Push your code to a GitHub repository
+2. **Deploy Database**: Create a MySQL database on Railway
+3. **Deploy App**: Create a Web Service on Render
+
+### Step 1: Railway MySQL Database
+
+1. Go to [Railway](https://railway.app)
+2. Create a new MySQL database
+3. Get the connection details from Railway dashboard
+
+### Step 2: Render Web Service
+
+1. Go to [Render](https://render.com)
+2. Create a new Web Service
+3. Connect your GitHub repository
+4. Configure:
+
+**Build Command:**
+```bash
+npm run build:prod
+```
+
+**Start Command:**
+```bash
+npm start
+```
+
+**Environment Variables:**
+```env
+NODE_ENV=production
+PORT=10000
+DB_TYPE=mysql
+DB_HOST=your-railway-host.railway.app
+DB_USER=your-railway-username
+DB_PASSWORD=your-railway-password
+DB_NAME=your-database-name
+DB_PORT=3306
+JWT_SECRET=your-production-jwt-secret
+```
+
+### Step 3: Access Your Application
+
+Your app will be live at your Render URL with:
+- React frontend served by Express
+- All APIs working at `/api/*`
+- MySQL database connected
+
+## 🛠️ Tech Stack
+
+### Frontend
+- React 18
+- React Router DOM
+- Axios
+- Tailwind CSS
+- React Icons
+
+### Backend
+- Node.js
+- Express.js
+- MySQL2
+- JWT Authentication
+- Bcrypt.js
+- Winston (Logging)
+
+### Database
+- MySQL (Production)
+- SQLite (Development)
+
+## 🏗️ Project Structure
+
+```
+smart-school-transport-system/
+├── client/                 # React frontend
+├── server/                # Express backend
+├── database/             # Database schemas
+└── package.json          # Root package.json
+```
+
+## 📋 Prerequisites
+
+- Node.js 18+ 
+- MySQL database (Railway for production)
+- Git
+
+## 🚀 Quick Start
+
+### 1. Clone and Install
+
+```bash
+git clone <your-repo-url>
+cd smart-school-transport-system
+npm run install:all
+```
+
+### 2. Environment Setup
+
+```bash
+cp .env.example .env
+```
+
+### 3. Build and Run
+
+```bash
+npm run build:prod
+npm start
+```
+
+## 🎯 Features Overview
+
+### Admin Dashboard
+- Student management
+- Driver approval and management
+- Bus fleet management
+- Route planning
+- Attendance monitoring
+- Payment tracking
+- Reports and analytics
+
+### Driver Dashboard
+- View assigned routes and students
+- Mark student attendance
+- QR code scanning
+- Profile management
+
+### Parent Dashboard
+- Track child's bus location
+- View attendance records
+- Monitor payments
+- Receive notifications
+
+## 🔐 Security Features
+
+- JWT-based authentication
+- Role-based access control
+- Password hashing with bcrypt
+- Rate limiting
+- CORS protection
+- Security headers
+
+## 📊 Default Credentials
+
+- **Admin Email**: admin@smarttransport.com
+- **Admin Password**: admin123
+
+## 🛠️ Available Scripts
+
+- `npm run install:all` - Install all dependencies
+- `npm run build:prod` - Build React and copy to server
+- `npm start` - Start production server
+- `npm run dev` - Start development server
+
+## 📄 License
+
+MIT License
 
 ---
 
