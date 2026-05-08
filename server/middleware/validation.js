@@ -71,8 +71,9 @@ const validateBus = (req, res, next) => {
 };
 
 // Driver validation
-const validateDriver = (req, res, next) => {
-    const { license_number, full_name, phone, license_expiry, hire_date } = req.body;
+const validateDriver = (dataOrReq, res, next) => {
+    const body = dataOrReq?.body ? dataOrReq.body : dataOrReq || {};
+    const { license_number, full_name, phone, license_expiry } = body;
     const errors = [];
 
     if (!license_number || license_number.trim() === '') {
@@ -89,25 +90,29 @@ const validateDriver = (req, res, next) => {
         errors.push('Invalid phone number format');
     }
 
-    if (!license_expiry) {
-        errors.push('License expiry date is required');
-    } else if (new Date(license_expiry) < new Date()) {
-        errors.push('License has already expired');
-    }
-
-    if (!hire_date) {
-        errors.push('Hire date is required');
+    if (license_expiry) {
+        if (new Date(license_expiry) < new Date()) {
+            errors.push('License has already expired');
+        }
     }
 
     if (errors.length > 0) {
-        return res.status(400).json({
-            success: false,
-            message: 'Validation failed',
-            errors
-        });
+        if (res && next) {
+            return res.status(400).json({
+                success: false,
+                message: 'Validation failed',
+                errors
+            });
+        }
+
+        return { isValid: false, errors };
     }
 
-    next();
+    if (res && next) {
+        return next();
+    }
+
+    return { isValid: true, errors: [] };
 };
 
 // Route validation

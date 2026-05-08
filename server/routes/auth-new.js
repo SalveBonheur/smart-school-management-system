@@ -20,7 +20,8 @@ router.post('/drivers/register', async (req, res) => {
         if (!validation.isValid) {
             return res.status(400).json({
                 success: false,
-                message: validation.errors[0] || 'Validation failed'
+                message: validation.errors[0] || 'Validation failed',
+                errors: validation.errors
             });
         }
         
@@ -45,7 +46,7 @@ router.post('/drivers/register', async (req, res) => {
             INSERT INTO drivers (
                 full_name, email, phone, license_number, address, 
                 password, status, profile_photo, hire_date
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, date('now'))
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE())
         `, [fullName, email, phone, licenseNumber, address, hashedPassword, 'pending', null]);
         
         // Get the created driver

@@ -1,9 +1,9 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import rateLimit from 'express-rate-limit';
 import compression from 'compression';
-import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 
 // Import database
@@ -25,7 +25,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-dotenv.config();
 
 // Security middleware
 app.use((req, res, next) => {
