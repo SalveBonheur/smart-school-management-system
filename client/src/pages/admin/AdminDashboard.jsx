@@ -6,17 +6,28 @@ import {
   FaRoute,
   FaCalendarCheck,
   FaCreditCard,
-  FaArrowUp,
-  FaArrowDown,
-  FaChartLine,
-  FaExclamationTriangle,
   FaClock,
   FaCheckCircle,
+  FaMoneyBill,
+  FaExclamationTriangle,
+  FaUserCheck,
+  FaChartPie,
+  FaDownload
 } from 'react-icons/fa';
 import DashboardCard from '../../components/DashboardCard';
 import DataTable from '../../components/DataTable';
 import { dashboardAPI, studentAPI, driverAPI } from '../../services/api';
 import { CardLoader } from '../../components/Loader';
+
+// Analytics Components
+import AnalyticsCard from '../../components/analytics/AnalyticsCard';
+import SmartInsights from '../../components/analytics/SmartInsights';
+import ReportFilters from '../../components/analytics/ReportFilters';
+import IncomeChart from '../../components/analytics/charts/IncomeChart';
+import AttendanceChart from '../../components/analytics/charts/AttendanceChart';
+import BusOccupancyChart from '../../components/analytics/charts/BusOccupancyChart';
+import RoutePerformanceChart from '../../components/analytics/charts/RoutePerformanceChart';
+import PaymentStatsChart from '../../components/analytics/charts/PaymentStatsChart';
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState({
@@ -90,173 +101,202 @@ const AdminDashboard = () => {
     { key: 'phone', label: 'Phone' },
   ];
 
+  // Handle filter changes
+  const handleFilterChange = (filters) => {
+    console.log('Filters changed:', filters);
+    // Implement filter logic here
+  };
+
+  // Handle export
+  const handleExport = (format, filters) => {
+    console.log(`Exporting as ${format} with filters:`, filters);
+    // Implement export logic here
+    alert(`Exporting report as ${format.toUpperCase()}...`);
+  };
+
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl p-8 text-white relative overflow-hidden">
+      <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-2xl p-8 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
         <div className="relative z-10">
-          <h1 className="text-3xl font-bold mb-2">Admin Dashboard</h1>
-          <p className="text-blue-100 text-lg">Welcome back! Here's what's happening with your transport system.</p>
-          <div className="flex items-center gap-4 mt-4 text-sm text-blue-200">
-            <div className="flex items-center gap-2">
-              <FaClock className="w-4 h-4" />
-              <span>Last updated: {new Date().toLocaleTimeString()}</span>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold mb-2">Analytics Dashboard</h1>
+              <p className="text-blue-100 text-lg">Real-time insights into your school transport system.</p>
             </div>
-            <div className="flex items-center gap-2">
-              <FaCheckCircle className="w-4 h-4" />
-              <span>System operational</span>
+            <div className="hidden md:flex items-center gap-4">
+              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-xl">
+                <FaClock className="w-4 h-4" />
+                <span className="text-sm">{new Date().toLocaleTimeString()}</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-xl">
+                <FaCheckCircle className="w-4 h-4 text-green-300" />
+                <span className="text-sm">System Online</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Stats Grid */}
+      {/* Report Filters */}
+      <ReportFilters onFilterChange={handleFilterChange} onExport={handleExport} loading={loading} />
+
+      {/* Smart Analytics Stats */}
       {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[...Array(8)].map((_, i) => (
             <CardLoader key={i} />
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {statCards.map((card, index) => (
-            <DashboardCard
-              key={index}
-              title={card.title}
-              value={card.value}
-              icon={card.icon}
-              color={card.color}
-              trend={card.trend}
-              trendValue={card.trendValue}
-            />
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <AnalyticsCard
+            title="Total Students"
+            value={stats.students || 265}
+            icon={FaUsers}
+            color="blue"
+            trend="up"
+            trendValue="+12%"
+          />
+          <AnalyticsCard
+            title="Active Buses"
+            value={stats.buses || 8}
+            icon={FaBus}
+            color="green"
+            trend="up"
+            trendValue="+5%"
+          />
+          <AnalyticsCard
+            title="Attendance Rate"
+            value={`${stats.attendance || 94}%`}
+            icon={FaCalendarCheck}
+            color="purple"
+            trend="up"
+            trendValue="+3%"
+          />
+          <AnalyticsCard
+            title="Monthly Income"
+            value={`$${stats.payments || 72000}`}
+            icon={FaCreditCard}
+            color="green"
+            trend="up"
+            trendValue="+18%"
+          />
+          <AnalyticsCard
+            title="Pending Balances"
+            value="$12,450"
+            icon={FaMoneyBill}
+            color="red"
+            trend="down"
+            trendValue="-8%"
+          />
+          <AnalyticsCard
+            title="Active Drivers"
+            value={stats.drivers || 12}
+            icon={FaIdCard}
+            color="indigo"
+            trend="up"
+            trendValue="+2"
+          />
+          <AnalyticsCard
+            title="Route Occupancy"
+            value="87%"
+            icon={FaRoute}
+            color="orange"
+            trend="up"
+            trendValue="+5%"
+          />
+          <AnalyticsCard
+            title="Approved Drivers"
+            value="10"
+            icon={FaUserCheck}
+            color="blue"
+            trend="up"
+            trendValue="+1"
+          />
         </div>
       )}
 
-      {/* Alerts Section */}
+      {/* Smart Insights */}
       <div className="grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
-          {/* Recent Students */}
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
-                  <FaUsers className="w-5 h-5 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900">Recent Students</h3>
-                  <p className="text-sm text-gray-500">Latest student registrations</p>
-                </div>
-              </div>
-              <a href="/admin/students" className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors">
-                View All →
-              </a>
-            </div>
-            <DataTable
-              columns={studentColumns}
-              data={recentStudents}
-              loading={loading}
-              emptyMessage="No students found"
-            />
+          {/* Charts Section */}
+          <div className="space-y-6">
+            {/* Income Chart */}
+            <IncomeChart loading={loading} />
+            
+            {/* Attendance Chart */}
+            <AttendanceChart loading={loading} />
           </div>
         </div>
 
-        {/* Quick Actions & Alerts */}
         <div className="space-y-6">
-          {/* Quick Actions */}
-          <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 border border-blue-100">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-            <div className="space-y-3">
-              <button className="w-full bg-white rounded-xl p-4 text-left hover:shadow-md transition-all duration-200 border border-gray-200">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                    <FaCheckCircle className="w-4 h-4 text-green-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-900">Approve Drivers</p>
-                    <p className="text-sm text-gray-500">{pendingDrivers.length} pending</p>
-                  </div>
-                </div>
-              </button>
-              <button className="w-full bg-white rounded-xl p-4 text-left hover:shadow-md transition-all duration-200 border border-gray-200">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <FaRoute className="w-4 h-4 text-purple-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-900">Manage Routes</p>
-                    <p className="text-sm text-gray-500">Optimize bus routes</p>
-                  </div>
-                </div>
-              </button>
-              <button className="w-full bg-white rounded-xl p-4 text-left hover:shadow-md transition-all duration-200 border border-gray-200">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-                    <FaCalendarCheck className="w-4 h-4 text-orange-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-900">View Attendance</p>
-                    <p className="text-sm text-gray-500">Today's reports</p>
-                  </div>
-                </div>
-              </button>
-            </div>
-          </div>
-
-          {/* System Alerts */}
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-yellow-100 rounded-xl flex items-center justify-center">
-                <FaExclamationTriangle className="w-5 h-5 text-yellow-600" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900">System Alerts</h3>
-                <p className="text-sm text-gray-500">Important notifications</p>
-              </div>
-            </div>
-            <div className="space-y-3">
-              <div className="flex items-start gap-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                <FaExclamationTriangle className="w-4 h-4 text-yellow-600 mt-0.5" />
-                <div>
-                  <p className="text-sm font-medium text-gray-900">Pending Driver Approvals</p>
-                  <p className="text-xs text-gray-600">{pendingDrivers.length} drivers waiting for approval</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                <FaChartLine className="w-4 h-4 text-blue-600 mt-0.5" />
-                <div>
-                  <p className="text-sm font-medium text-gray-900">Monthly Report Ready</p>
-                  <p className="text-xs text-gray-600">Transport analytics for {new Date().toLocaleDateString()}</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Smart Insights Panel */}
+          <SmartInsights loading={loading} />
+          
+          {/* Payment Stats */}
+          <PaymentStatsChart loading={loading} />
         </div>
       </div>
 
-      {/* Pending Driver Approvals */}
-      <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center">
-              <FaIdCard className="w-5 h-5 text-orange-600" />
+      {/* Second Row Charts */}
+      <div className="grid lg:grid-cols-2 gap-6">
+        <BusOccupancyChart loading={loading} />
+        <RoutePerformanceChart loading={loading} />
+      </div>
+
+      {/* Data Tables Section */}
+      <div className="grid lg:grid-cols-2 gap-6">
+        {/* Recent Students */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
+                <FaUsers className="w-5 h-5 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900">Recent Students</h3>
+                <p className="text-sm text-gray-500">Latest student registrations</p>
+              </div>
             </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900">Pending Driver Approvals</h3>
-              <p className="text-sm text-gray-500">Drivers awaiting approval</p>
-            </div>
+            <a href="/admin/students" className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors">
+              View All →
+            </a>
           </div>
-          <a href="/admin/drivers" className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors">
-            View All →
-          </a>
+          <DataTable
+            columns={studentColumns}
+            data={recentStudents}
+            loading={loading}
+            emptyMessage="No students found"
+          />
         </div>
-        <DataTable
-          columns={driverColumns}
-          data={pendingDrivers}
-          loading={loading}
-          emptyMessage="No pending approvals"
-        />
+
+        {/* Pending Driver Approvals */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center">
+                <FaIdCard className="w-5 h-5 text-orange-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900">Pending Approvals</h3>
+                <p className="text-sm text-gray-500">Drivers awaiting approval</p>
+              </div>
+            </div>
+            <a href="/admin/drivers" className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors">
+              View All →
+            </a>
+          </div>
+          <DataTable
+            columns={driverColumns}
+            data={pendingDrivers}
+            loading={loading}
+            emptyMessage="No pending approvals"
+          />
+        </div>
       </div>
     </div>
   );

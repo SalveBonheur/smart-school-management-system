@@ -61,8 +61,8 @@ const DriverRegisterPage = () => {
       if (result.success) {
         setSuccess(true);
         setTimeout(() => {
-          navigate('/login');
-        }, 3000);
+          navigate('/driver/dashboard');
+        }, 1500);
       } else {
         setError(result.message || 'Registration failed');
       }
@@ -82,9 +82,9 @@ const DriverRegisterPage = () => {
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Registration Successful!</h2>
           <p className="text-gray-600 mb-4">
-            Your application has been submitted for approval. You will be notified once approved.
+            Your driver account has been created successfully. Taking you to your dashboard...
           </p>
-          <p className="text-sm text-gray-500">Redirecting to login...</p>
+          <p className="text-sm text-gray-500">Redirecting to your dashboard...</p>
         </div>
       </div>
     );

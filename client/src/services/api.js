@@ -127,10 +127,13 @@ export const dashboardAPI = {
 
 // Notification APIs
 export const notificationAPI = {
+  getNotifications: (params = {}) => api.get('/notifications', { params }),
+  getUnreadCount: () => api.get('/notifications/unread-count'),
   getAll: () => api.get('/notifications'),
-  markAsRead: (id) => api.put(`/notifications/${id}/read`),
+  markAsRead: (id) => api.put(`/notifications/read/${id}`),
   markAllAsRead: () => api.put('/notifications/read-all'),
   delete: (id) => api.delete(`/notifications/${id}`),
+  deleteNotification: (id) => api.delete(`/notifications/${id}`),
 };
 
 // Report APIs
@@ -139,6 +142,16 @@ export const reportAPI = {
   getPaymentReport: (params) => api.get('/reports/payments', { params }),
   exportAttendance: (format = 'csv') => api.get(`/reports/export/attendance?format=${format}`),
   exportPayments: (format = 'csv') => api.get(`/reports/export/payments?format=${format}`),
+};
+
+// Bus Status APIs
+export const busStatusAPI = {
+  getAll: () => api.get('/bus-status'),
+  getByBusId: (busId) => api.get(`/bus-status/${busId}`),
+  updateStatus: (busId, data) => api.post(`/bus-status/${busId}/update`, data),
+  getByDriver: (driverId) => api.get(`/bus-status/driver/${driverId}`),
+  getByStudent: (studentId) => api.get(`/bus-status/student/${studentId}`),
+  getDelayedSummary: () => api.get('/bus-status/summary/delayed'),
 };
 
 export default api;

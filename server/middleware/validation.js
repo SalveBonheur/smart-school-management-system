@@ -73,14 +73,20 @@ const validateBus = (req, res, next) => {
 // Driver validation
 const validateDriver = (dataOrReq, res, next) => {
     const body = dataOrReq?.body ? dataOrReq.body : dataOrReq || {};
-    const { license_number, full_name, phone, license_expiry } = body;
+    const { license_number, licenseNumber, full_name, fullName, phone, license_expiry } = body;
     const errors = [];
 
-    if (!license_number || license_number.trim() === '') {
+    console.log('DEBUG - Received body:', body);
+    console.log('DEBUG - license_number:', license_number, 'licenseNumber:', licenseNumber);
+
+    const licenseNum = license_number || licenseNumber;
+    const driverName = full_name || fullName;
+
+    if (!licenseNum || String(licenseNum).trim() === '') {
         errors.push('License number is required');
     }
 
-    if (!full_name || full_name.trim() === '') {
+    if (!driverName || String(driverName).trim() === '') {
         errors.push('Driver full name is required');
     }
 

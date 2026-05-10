@@ -6,8 +6,12 @@ import rateLimit from 'express-rate-limit';
 import compression from 'compression';
 import { fileURLToPath } from 'url';
 
-// Import database
-import { connectDB } from './config/db-mysql.js';
+// Import database based on DB_TYPE environment variable
+const isMySQL = process.env.DB_TYPE === 'mysql';
+const { connectDB } = isMySQL 
+    ? await import('./config/db-mysql.js')
+    : await import('./config/db.js');
+console.log(`Using database: ${isMySQL ? 'MySQL' : 'SQLite'}`);
 
 // Import modular routers
 import authRouter from './routes/auth.js';
@@ -19,6 +23,8 @@ import routeRouter from './routes/route.js';
 import attendanceRouter from './routes/attendance.js';
 import paymentRouter from './routes/payment.js';
 import dashboardRouter from './routes/dashboard.js';
+import notificationsRouter from './routes/notifications.js';
+import busStatusRouter from './routes/busStatus.js';
 
 // Define __dirname and __filename for ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -102,6 +108,8 @@ app.use('/api/routes', routeRouter);
 app.use('/api/attendance', attendanceRouter);
 app.use('/api/payments', paymentRouter);
 app.use('/api/dashboard', dashboardRouter);
+app.use('/api/notifications', notificationsRouter);
+app.use('/api/bus-status', busStatusRouter);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

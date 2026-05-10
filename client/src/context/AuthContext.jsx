@@ -142,6 +142,22 @@ export const AuthProvider = ({ children }) => {
   const registerDriver = async (data) => {
     try {
       const response = await authAPI.driverRegister(data);
+      const { data: driverData } = response.data;
+      
+      // Auto-login after registration
+      if (driverData) {
+        const token = 'driver-token-' + driverData.id + '-' + Date.now();
+        const userData = { ...driverData, role: 'driver' };
+        
+        localStorage.setItem('token', token);
+        localStorage.setItem('userData', JSON.stringify(userData));
+        
+        setUser(userData);
+        setIsAuthenticated(true);
+        
+        return { success: true, user: userData };
+      }
+      
       return { success: true, data: response.data };
     } catch (error) {
       console.error('Driver registration error:', error);

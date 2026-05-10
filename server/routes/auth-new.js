@@ -4,6 +4,10 @@ import db from '../config/db.js';
 import jwt from 'jsonwebtoken';
 import { validateDriver, validateAdminRegistration } from '../middleware/validation.js';
 import { logger } from '../middleware/logger.js';
+import {
+    notifyPendingDriver,
+    notifyDriverApproved
+} from '../services/notificationService.js';
 
 const router = express.Router();
 
@@ -13,10 +17,12 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 // Driver Registration
 router.post('/drivers/register', async (req, res) => {
     try {
+        console.log('DEBUG - Driver registration received:', req.body);
         const { fullName, email, phone, licenseNumber, address, password } = req.body;
         
         // Validate input
         const validation = validateDriver(req.body);
+        console.log('DEBUG - Validation result:', validation);
         if (!validation.isValid) {
             return res.status(400).json({
                 success: false,
@@ -26,10 +32,12 @@ router.post('/drivers/register', async (req, res) => {
         }
         
         // Check if driver already exists
+        console.log('DEBUG - Checking existing driver...');
         const [existingDrivers] = await db.query(
             'SELECT id FROM drivers WHERE email = ? OR license_number = ?',
             [email, licenseNumber]
         );
+        console.log('DEBUG - Existing drivers:', existingDrivers);
         
         if (existingDrivers.length > 0) {
             return res.status(400).json({
@@ -39,21 +47,28 @@ router.post('/drivers/register', async (req, res) => {
         }
         
         // Hash password
+        console.log('DEBUG - Hashing password...');
         const hashedPassword = await bcrypt.hash(password, 12);
+        console.log('DEBUG - Password hashed, inserting driver...');
         
         // Insert new driver with pending status
         const result = await db.run(`
             INSERT INTO drivers (
                 full_name, email, phone, license_number, address, 
                 password, status, profile_photo, hire_date
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE())
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, date('now'))
         `, [fullName, email, phone, licenseNumber, address, hashedPassword, 'pending', null]);
         
         // Get the created driver
+        console.log('DEBUG - Driver inserted with ID:', result.lastID);
         const [newDriver] = await db.query(
             'SELECT id, full_name, email, status FROM drivers WHERE id = ?',
             [result.lastID]
         );
+        console.log('DEBUG - New driver:', newDriver);
+        
+        // Notify admins about pending driver
+        await notifyPendingDriver(result.lastID, fullName);
         
         res.status(201).json({
             success: true,
@@ -62,10 +77,11 @@ router.post('/drivers/register', async (req, res) => {
         });
         
     } catch (error) {
-        console.error('Driver registration error:', error);
+        console.error('Driver registration error:', error.message);
+        console.error('Full error:', error);
         res.status(500).json({
             success: false,
-            message: 'Server error during registration'
+            message: 'Server error: ' + error.message
         });
     }
 });
@@ -269,6 +285,9 @@ router.put('/drivers/:id/approve', authenticateToken, authorizeRoles(['super_adm
             'UPDATE drivers SET status = ? WHERE id = ?',
             ['approved', id]
         );
+        
+        // Notify driver about approval
+        await notifyDriverApproved(parseInt(id), driver[0].full_name);
         
         res.json({
             success: true,

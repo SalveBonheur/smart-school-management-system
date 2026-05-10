@@ -15,6 +15,10 @@ import LoginPage from './pages/auth/LoginPage';
 import DriverRegisterPage from './pages/auth/DriverRegisterPage';
 import RegisterPage from './pages/auth/RegisterPage';
 
+// Settings & Notifications
+import SettingsPage from './pages/SettingsPage';
+import NotificationsPage from './pages/NotificationsPage';
+
 // Admin Pages
 import AdminDashboard from './pages/admin/AdminDashboard';
 import StudentsPage from './pages/admin/StudentsPage';
@@ -28,6 +32,7 @@ import ReportsPage from './pages/admin/ReportsPage';
 // Driver Pages
 import DriverDashboard from './pages/driver/DriverDashboard';
 import DriverAttendance from './pages/driver/DriverAttendance';
+import DriverSchedule from './pages/driver/DriverSchedule';
 import DriverProfile from './pages/driver/DriverProfile';
 
 // Parent Pages
@@ -163,6 +168,16 @@ const App = () => {
         }
       />
       <Route
+        path="/driver/schedule"
+        element={
+          <ProtectedRoute allowedRoles={['driver']}>
+            <DashboardLayout>
+              <DriverSchedule />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
         path="/driver/profile"
         element={
           <ProtectedRoute allowedRoles={['driver']}>
@@ -200,6 +215,30 @@ const App = () => {
           <ProtectedRoute allowedRoles={['parent']}>
             <DashboardLayout>
               <ParentPayments />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Settings Route - Accessible to all authenticated users */}
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute allowedRoles={['admin', 'super_admin', 'driver', 'parent']}>
+            <DashboardLayout>
+              <SettingsPage />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Notifications Route - Accessible to all authenticated users */}
+      <Route
+        path="/notifications"
+        element={
+          <ProtectedRoute allowedRoles={['admin', 'super_admin', 'driver', 'parent']}>
+            <DashboardLayout>
+              <NotificationsPage />
             </DashboardLayout>
           </ProtectedRoute>
         }

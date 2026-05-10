@@ -96,11 +96,11 @@ const RegisterPage = () => {
       });
 
       if (result.success) {
-        // For drivers, show success message and redirect to login (since they need approval)
+        // Auto-login and redirect to driver dashboard immediately
         setSuccess(true);
         setTimeout(() => {
-          navigate('/login');
-        }, 3000);
+          navigate('/driver/dashboard');
+        }, 1500);
       } else {
         setError(result.message || 'Registration failed. Please try again.');
       }
@@ -164,15 +164,12 @@ const RegisterPage = () => {
             <h2 className="text-2xl font-bold text-white mb-2">Registration Successful!</h2>
             <p className="text-blue-200 mb-6">
               {activeTab === 'driver' 
-                ? 'Your driver application has been submitted. You will receive an email once approved.'
-                : 'Your parent account has been created successfully. You are now being logged in.'
+                ? 'Your driver account has been created successfully. Taking you to your dashboard...'
+                : 'Your parent account has been created successfully. Taking you to your dashboard...'
               }
             </p>
             <p className="text-blue-300 text-sm">
-              {activeTab === 'driver' 
-                ? 'Redirecting to login page...' 
-                : 'Redirecting to your dashboard...'
-              }
+              Redirecting to your dashboard...
             </p>
           </div>
         </div>

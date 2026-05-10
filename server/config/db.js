@@ -41,6 +41,7 @@ const createTables = async () => {
     await db.exec(`
       CREATE TABLE IF NOT EXISTS admins (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username VARCHAR(255) UNIQUE NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
         full_name VARCHAR(255) NOT NULL,
@@ -60,6 +61,8 @@ const createTables = async () => {
         phone VARCHAR(20),
         license_number VARCHAR(50),
         address TEXT,
+        profile_photo VARCHAR(255),
+        hire_date DATE,
         status VARCHAR(20) DEFAULT 'active',
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -220,21 +223,23 @@ const createTables = async () => {
       )
     `);
 
-    // Notifications table for parents
+    // Notifications table for all users
     await db.exec(`
       CREATE TABLE IF NOT EXISTS notifications (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        parent_id INTEGER NOT NULL,
-        student_id INTEGER NOT NULL,
+        user_id INTEGER,
+        user_role VARCHAR(50) NOT NULL,
         type VARCHAR(50) NOT NULL,
+        category VARCHAR(50) DEFAULT 'general',
+        priority VARCHAR(20) DEFAULT 'normal',
         title VARCHAR(255) NOT NULL,
         message TEXT NOT NULL,
+        related_id INTEGER,
+        related_type VARCHAR(50),
         is_read BOOLEAN DEFAULT 0,
-        sent_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         read_at DATETIME,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (parent_id) REFERENCES parents(id),
-        FOREIGN KEY (student_id) REFERENCES students(id)
+        FOREIGN KEY (user_id) REFERENCES users(id)
       )
     `);
 
@@ -259,22 +264,39 @@ const createTables = async () => {
       )
     `);
 
-    // Bus status tracking table
+    // Bus status tracking table - Enhanced for live tracking
     await db.exec(`
       CREATE TABLE IF NOT EXISTS bus_status_logs (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         bus_id INTEGER NOT NULL,
         driver_id INTEGER NOT NULL,
-        status VARCHAR(20) NOT NULL,
+        status VARCHAR(20) NOT NULL CHECK(status IN ('active', 'on_route', 'delayed', 'arrived', 'maintenance', 'parked')),
         location TEXT,
         latitude DECIMAL(10,8),
         longitude DECIMAL(11,8),
         estimated_arrival TIME,
-        delay_minutes INTEGER,
+        delay_minutes INTEGER DEFAULT 0,
         reason TEXT,
         started_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         ended_at DATETIME,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (bus_id) REFERENCES buses(id),
+        FOREIGN KEY (driver_id) REFERENCES drivers(id)
+      )
+    `);
+
+    // Current bus status view (latest status for each bus)
+    await db.exec(`
+      CREATE TABLE IF NOT EXISTS bus_current_status (
+        bus_id INTEGER PRIMARY KEY,
+        driver_id INTEGER,
+        status VARCHAR(20) DEFAULT 'parked',
+        location TEXT,
+        latitude DECIMAL(10,8),
+        longitude DECIMAL(11,8),
+        estimated_arrival TIME,
+        delay_minutes INTEGER DEFAULT 0,
+        last_updated DATETIME DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (bus_id) REFERENCES buses(id),
         FOREIGN KEY (driver_id) REFERENCES drivers(id)
       )
@@ -290,6 +312,19 @@ const createTables = async () => {
     await db.exec(`CREATE INDEX IF NOT EXISTS idx_payments_status ON payments(status)`);
     await db.exec(`CREATE INDEX IF NOT EXISTS idx_students_bus ON students(bus_id)`);
     await db.exec(`CREATE INDEX IF NOT EXISTS idx_students_route ON students(route_id)`);
+
+    // Create default admin if none exists
+    const bcryptModule = await import('bcryptjs');
+    const bcrypt = bcryptModule.default || bcryptModule;
+    const [admins] = await db.all('SELECT COUNT(*) as count FROM admins');
+    if (admins.count === 0) {
+      const hashedPassword = await bcrypt.hash('admin123', 10);
+      await db.run(
+        `INSERT INTO admins (username, email, password, full_name, role) VALUES (?, ?, ?, ?, ?)`,
+        ['admin', 'admin@smarttransport.com', hashedPassword, 'System Administrator', 'super_admin']
+      );
+      console.log('✅ Default admin created: admin@smarttransport.com / admin123');
+    }
 
     console.log('Database tables created successfully');
   } catch (error) {

@@ -1,4 +1,5 @@
 import mysql from 'mysql2/promise';
+import bcrypt from 'bcryptjs';
 
 // MySQL configuration for Railway
 const mysqlConfig = {
@@ -41,6 +42,7 @@ const createTables = async () => {
     await db.execute(`
       CREATE TABLE IF NOT EXISTS admins (
         id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(255) UNIQUE NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
         full_name VARCHAR(255) NOT NULL,
@@ -175,6 +177,17 @@ const createTables = async () => {
         FOREIGN KEY (student_id) REFERENCES students(id)
       )
     `);
+
+    // Create default admin if none exists
+    const [admins] = await db.execute('SELECT COUNT(*) as count FROM admins');
+    if (admins[0].count === 0) {
+      const hashedPassword = await bcrypt.hash('admin123', 10);
+      await db.execute(
+        `INSERT INTO admins (username, email, password, full_name, role) VALUES (?, ?, ?, ?, ?)`,
+        ['admin', 'admin@smarttransport.com', hashedPassword, 'System Administrator', 'super_admin']
+      );
+      console.log('✅ Default admin created: admin@smarttransport.com / admin123');
+    }
 
     console.log('MySQL tables created successfully');
   } catch (error) {
