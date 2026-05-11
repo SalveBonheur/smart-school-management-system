@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { FaBus, FaUsers, FaRoute, FaClock } from 'react-icons/fa';
+import { FaBus, FaUsers, FaRoute, FaClock, FaMapMarkerAlt } from 'react-icons/fa';
 import DashboardCard from '../../components/DashboardCard';
-import { dashboardAPI, driverAPI } from '../../services/api';
+import { dashboardAPI, driverAPI, busStatusAPI } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
+import DriverBusControl from '../../components/busStatus/DriverBusControl';
 
 const DriverDashboard = () => {
   const { user } = useAuth();
@@ -13,6 +14,8 @@ const DriverDashboard = () => {
     schedule: null,
   });
   const [profile, setProfile] = useState(null);
+  const [assignedBus, setAssignedBus] = useState(null);
+  const [updatingStatus, setUpdatingStatus] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -23,9 +26,10 @@ const DriverDashboard = () => {
     try {
       setLoading(true);
       
-      const [statsRes, profileRes] = await Promise.all([
+      const [statsRes, profileRes, busRes] = await Promise.all([
         dashboardAPI.getDriverStats(),
         driverAPI.getProfile(),
+        busStatusAPI.getByDriver(user?.id).catch(() => ({ data: { data: [] } })),
       ]);
 
       if (statsRes.data?.success) {
@@ -35,10 +39,33 @@ const DriverDashboard = () => {
       if (profileRes.data?.success) {
         setProfile(profileRes.data.data);
       }
+
+      if (busRes.data?.success && busRes.data.data.length > 0) {
+        setAssignedBus(busRes.data.data[0]);
+      }
     } catch (error) {
       console.error('Error fetching driver data:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleStatusUpdate = async (busId, data) => {
+    try {
+      setUpdatingStatus(true);
+      const res = await busStatusAPI.updateStatus(busId, data);
+      if (res.data?.success) {
+        // Refresh bus data
+        const busRes = await busStatusAPI.getByDriver(user?.id);
+        if (busRes.data?.success && busRes.data.data.length > 0) {
+          setAssignedBus(busRes.data.data[0]);
+        }
+      }
+    } catch (error) {
+      console.error('Error updating bus status:', error);
+      alert('Failed to update status. Please try again.');
+    } finally {
+      setUpdatingStatus(false);
     }
   };
 
@@ -72,45 +99,66 @@ const DriverDashboard = () => {
 
       {/* Two Column Layout */}
       <div className="grid lg:grid-cols-2 gap-6">
-        {/* Today's Schedule */}
-        <div className="dashboard-card">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Today's Schedule</h3>
-          <div className="space-y-4">
-            <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-              <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                <FaBus className="w-6 h-6 text-primary-600" />
-              </div>
-              <div>
-                <p className="font-medium text-gray-900">Morning Pickup</p>
-                <p className="text-sm text-gray-500">7:00 AM - Route A</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <FaBus className="w-6 h-6 text-green-600" />
-              </div>
-              <div>
-                <p className="font-medium text-gray-900">Afternoon Drop-off</p>
-                <p className="text-sm text-gray-500">3:30 PM - Route A</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Bus Status Control */}
+        <DriverBusControl 
+          bus={assignedBus}
+          onStatusUpdate={handleStatusUpdate}
+          loading={updatingStatus}
+        />
 
         {/* Quick Actions */}
-        <div className="dashboard-card">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-          <div className="grid grid-cols-2 gap-4">
-            <a href="/driver/attendance" className="p-4 bg-primary-50 rounded-xl hover:bg-primary-100 transition-colors">
-              <FaBus className="w-8 h-8 text-primary-600 mb-2" />
-              <p className="font-medium text-gray-900">Mark Attendance</p>
-              <p className="text-sm text-gray-500">Record student pickup/drop</p>
-            </a>
-            <a href="/driver/profile" className="p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
-              <FaUsers className="w-8 h-8 text-green-600 mb-2" />
-              <p className="font-medium text-gray-900">My Profile</p>
-              <p className="text-sm text-gray-500">View your information</p>
-            </a>
+        <div className="space-y-6">
+          <div className="dashboard-card">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <a href="/driver/attendance" className="p-4 bg-primary-50 rounded-xl hover:bg-primary-100 transition-colors">
+                <FaBus className="w-8 h-8 text-primary-600 mb-2" />
+                <p className="font-medium text-gray-900">Mark Attendance</p>
+                <p className="text-sm text-gray-500">Record student pickup/drop</p>
+              </a>
+              <a href="/driver/schedule" className="p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors">
+                <FaClock className="w-8 h-8 text-blue-600 mb-2" />
+                <p className="font-medium text-gray-900">View Schedule</p>
+                <p className="text-sm text-gray-500">Check your trips</p>
+              </a>
+              <a href="/driver/profile" className="p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
+                <FaUsers className="w-8 h-8 text-green-600 mb-2" />
+                <p className="font-medium text-gray-900">My Profile</p>
+                <p className="text-sm text-gray-500">View your information</p>
+              </a>
+              <button className="p-4 bg-orange-50 rounded-xl hover:bg-orange-100 transition-colors text-left">
+                <FaMapMarkerAlt className="w-8 h-8 text-orange-600 mb-2" />
+                <p className="font-medium text-gray-900">Live Location</p>
+                <p className="text-sm text-gray-500">Share your location</p>
+              </button>
+            </div>
+          </div>
+
+          {/* Today's Schedule */}
+          <div className="dashboard-card">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Today's Schedule</h3>
+            <div className="space-y-3">
+              <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                  <FaBus className="w-6 h-6 text-primary-600" />
+                </div>
+                <div className="flex-1">
+                  <p className="font-medium text-gray-900">Morning Pickup</p>
+                  <p className="text-sm text-gray-500">7:00 AM - Route A</p>
+                </div>
+                <span className="px-3 py-1 bg-green-100 text-green-700 text-sm rounded-full">Completed</span>
+              </div>
+              <div className="flex items-center gap-4 p-4 bg-primary-50 rounded-lg border-2 border-primary-200">
+                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                  <FaBus className="w-6 h-6 text-primary-600" />
+                </div>
+                <div className="flex-1">
+                  <p className="font-medium text-gray-900">Afternoon Drop-off</p>
+                  <p className="text-sm text-gray-500">3:30 PM - Route A</p>
+                </div>
+                <span className="px-3 py-1 bg-primary-100 text-primary-700 text-sm rounded-full">Current</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

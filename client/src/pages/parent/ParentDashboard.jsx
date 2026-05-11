@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { FaChild, FaBus, FaMapMarkerAlt, FaCreditCard, FaBell } from 'react-icons/fa';
+import { FaChild, FaBus, FaMapMarkerAlt, FaCreditCard, FaBell, FaClock, FaExclamationTriangle, FaCheckCircle, FaPhone } from 'react-icons/fa';
 import DashboardCard from '../../components/DashboardCard';
 import { useAuth } from '../../context/AuthContext';
-import { dashboardAPI } from '../../services/api';
+import { dashboardAPI, busStatusAPI } from '../../services/api';
+import StatusBadge from '../../components/busStatus/StatusBadge';
 
 const ParentDashboard = () => {
   const { user } = useAuth();
@@ -13,6 +14,7 @@ const ParentDashboard = () => {
     notifications: 0,
   });
   const [children, setChildren] = useState([]);
+  const [childBusStatuses, setChildBusStatuses] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -25,7 +27,22 @@ const ParentDashboard = () => {
       const response = await dashboardAPI.getParentStats();
       if (response.data?.success) {
         setStats(response.data.data || {});
-        setChildren(response.data.data?.children || []);
+        const childrenData = response.data.data?.children || [];
+        setChildren(childrenData);
+
+        // Fetch bus status for each child
+        const busStatuses = {};
+        for (const child of childrenData) {
+          try {
+            const busRes = await busStatusAPI.getByStudent(child.id);
+            if (busRes.data?.success) {
+              busStatuses[child.id] = busRes.data.data;
+            }
+          } catch (err) {
+            console.error(`Error fetching bus status for child ${child.id}:`, err);
+          }
+        }
+        setChildBusStatuses(busStatuses);
       }
     } catch (error) {
       console.error('Error fetching parent data:', error);
@@ -33,6 +50,28 @@ const ParentDashboard = () => {
       setLoading(false);
     }
   };
+
+  // Auto-refresh bus status every 30 seconds
+  useEffect(() => {
+    if (children.length === 0) return;
+    
+    const interval = setInterval(async () => {
+      const busStatuses = {};
+      for (const child of children) {
+        try {
+          const busRes = await busStatusAPI.getByStudent(child.id);
+          if (busRes.data?.success) {
+            busStatuses[child.id] = busRes.data.data;
+          }
+        } catch (err) {
+          console.error(`Error refreshing bus status for child ${child.id}:`, err);
+        }
+      }
+      setChildBusStatuses(busStatuses);
+    }, 30000);
+
+    return () => clearInterval(interval);
+  }, [children]);
 
   const statCards = [
     { title: 'My Children', value: stats.children, icon: FaChild, color: 'blue' },
@@ -62,40 +101,128 @@ const ParentDashboard = () => {
         ))}
       </div>
 
-      {/* Children Cards */}
+      {/* Children Cards with Bus Status */}
       <div className="grid md:grid-cols-2 gap-6">
         {children.length > 0 ? (
-          children.map((child) => (
-            <div key={child.id} className="dashboard-card">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 bg-primary-100 rounded-full flex items-center justify-center">
-                  <FaChild className="w-7 h-7 text-primary-600" />
+          children.map((child) => {
+            const busStatus = childBusStatuses[child.id]?.bus;
+            const isDelayed = busStatus?.status === 'delayed';
+            
+            return (
+              <div key={child.id} className="dashboard-card">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-14 h-14 bg-primary-100 rounded-full flex items-center justify-center">
+                    <FaChild className="w-7 h-7 text-primary-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg text-gray-900">{child.name}</h3>
+                    <p className="text-gray-500">{child.grade}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-lg text-gray-900">{child.name}</h3>
-                  <p className="text-gray-500">{child.grade}</p>
-                </div>
+
+                {/* Bus Status Section */}
+                {busStatus ? (
+                  <div className="space-y-3">
+                    {/* Status Header */}
+                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div className="flex items-center gap-2">
+                        <FaBus className="w-5 h-5 text-primary-600" />
+                        <span className="font-medium text-gray-900">Bus {busStatus.bus_number}</span>
+                      </div>
+                      <StatusBadge status={busStatus.status} size="sm" pulse={isDelayed} />
+                    </div>
+
+                    {/* Delay Alert */}
+                    {isDelayed && (
+                      <div className="flex items-center gap-2 p-3 bg-red-50 rounded-lg">
+                        <FaExclamationTriangle className="w-5 h-5 text-red-500" />
+                        <div>
+                          <p className="text-sm font-medium text-red-700">
+                            Delayed by {busStatus.delay_minutes} minutes
+                          </p>
+                          {busStatus.reason && (
+                            <p className="text-xs text-red-600">{busStatus.reason}</p>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Bus Info Grid */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="flex items-center gap-2 text-sm">
+                        <FaMapMarkerAlt className="w-4 h-4 text-gray-400" />
+                        <span className="text-gray-600 truncate">{busStatus.location || 'Unknown'}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <FaClock className="w-4 h-4 text-gray-400" />
+                        <span className="text-gray-600">
+                          ETA: <span className="font-medium">{busStatus.estimated_arrival || 'N/A'}</span>
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <FaBus className="w-4 h-4 text-gray-400" />
+                        <span className="text-gray-600">{busStatus.route_name || 'No route'}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <FaPhone className="w-4 h-4 text-gray-400" />
+                        <span className="text-gray-600">{busStatus.driver_phone || 'N/A'}</span>
+                      </div>
+                    </div>
+
+                    {/* Driver Info */}
+                    <div className="pt-3 border-t border-gray-100">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                            <FaChild className="w-4 h-4 text-gray-500" />
+                          </div>
+                          <span className="text-sm text-gray-700">Driver: {busStatus.driver_name || 'Not assigned'}</span>
+                        </div>
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                          child.on_bus ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'
+                        }`}>
+                          {child.on_bus ? 'On Board' : 'Not on Bus'}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Live Indicator */}
+                    {(busStatus.status === 'on_route' || busStatus.status === 'active') && (
+                      <div className="flex items-center gap-2 text-sm text-green-600">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                        </span>
+                        <span>Live tracking active</span>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Bus:</span>
+                      <span className="font-medium">{child.bus_number || 'Not assigned'}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Route:</span>
+                      <span className="font-medium">{child.route_name || 'Not assigned'}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Status:</span>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        child.on_bus ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'
+                      }`}>
+                        {child.on_bus ? 'On Bus' : 'Not on Bus'}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-400 text-center py-2">
+                      Bus status information not available
+                    </p>
+                  </div>
+                )}
               </div>
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Bus:</span>
-                  <span className="font-medium">{child.bus_number || 'Not assigned'}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Route:</span>
-                  <span className="font-medium">{child.route_name || 'Not assigned'}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Status:</span>
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    child.on_bus ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'
-                  }`}>
-                    {child.on_bus ? 'On Bus' : 'Not on Bus'}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))
+            );
+          })
         ) : (
           <div className="md:col-span-2 dashboard-card text-center py-12">
             <FaChild className="w-12 h-12 text-gray-300 mx-auto mb-4" />

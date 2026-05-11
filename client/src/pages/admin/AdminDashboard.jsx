@@ -16,7 +16,7 @@ import {
 } from 'react-icons/fa';
 import DashboardCard from '../../components/DashboardCard';
 import DataTable from '../../components/DataTable';
-import { dashboardAPI, studentAPI, driverAPI } from '../../services/api';
+import { dashboardAPI, studentAPI, driverAPI, busStatusAPI } from '../../services/api';
 import { CardLoader } from '../../components/Loader';
 
 // Analytics Components
@@ -29,6 +29,9 @@ import BusOccupancyChart from '../../components/analytics/charts/BusOccupancyCha
 import RoutePerformanceChart from '../../components/analytics/charts/RoutePerformanceChart';
 import PaymentStatsChart from '../../components/analytics/charts/PaymentStatsChart';
 
+// Bus Status Components
+import BusStatusTracker from '../../components/busStatus/BusStatusTracker';
+
 const AdminDashboard = () => {
   const [stats, setStats] = useState({
     students: 0,
@@ -40,6 +43,8 @@ const AdminDashboard = () => {
   });
   const [recentStudents, setRecentStudents] = useState([]);
   const [pendingDrivers, setPendingDrivers] = useState([]);
+  const [busStatuses, setBusStatuses] = useState([]);
+  const [busFilter, setBusFilter] = useState('all');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -67,10 +72,27 @@ const AdminDashboard = () => {
       if (driversRes.data?.success) {
         setPendingDrivers(driversRes.data.data || []);
       }
+
+      // Fetch bus statuses
+      const busStatusRes = await busStatusAPI.getAll();
+      if (busStatusRes.data?.success) {
+        setBusStatuses(busStatusRes.data.data || []);
+      }
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const refreshBusStatus = async () => {
+    try {
+      const res = await busStatusAPI.getAll();
+      if (res.data?.success) {
+        setBusStatuses(res.data.data || []);
+      }
+    } catch (error) {
+      console.error('Error refreshing bus status:', error);
     }
   };
 
@@ -219,6 +241,18 @@ const AdminDashboard = () => {
           />
         </div>
       )}
+
+      {/* Bus Status Tracker */}
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <BusStatusTracker 
+          buses={busStatuses}
+          loading={loading}
+          onRefresh={refreshBusStatus}
+          autoRefresh={true}
+          refreshInterval={30000}
+          filter={busFilter}
+        />
+      </div>
 
       {/* Smart Insights */}
       <div className="grid lg:grid-cols-3 gap-6">
