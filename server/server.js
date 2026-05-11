@@ -5,6 +5,7 @@ import path from 'path';
 import rateLimit from 'express-rate-limit';
 import compression from 'compression';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 
 // Import database based on DB_TYPE environment variable
 const isMySQL = process.env.DB_TYPE === 'mysql';
@@ -66,9 +67,13 @@ app.use(cors({
 
 app.set('trust proxy', 1);
 
-// Serve React production build or static files
+// Serve React production build or static files (if they exist)
 const publicPath = path.join(__dirname, 'public');
-app.use(express.static(publicPath, {
+const clientDistPath = path.join(__dirname, '..', 'client', 'dist');
+
+// Try client/dist first (Vite build output), fallback to public
+const staticPath = fs.existsSync(clientDistPath) ? clientDistPath : publicPath;
+app.use(express.static(staticPath, {
     maxAge: process.env.NODE_ENV === 'production' ? '1y' : '1d',
     etag: true,
     lastModified: true
@@ -84,21 +89,7 @@ app.get('/api/health', (req, res) => {
     });
 });
 
-// React Router fallback - must be after API routes
-app.get('*', (req, res) => {
-    // Don't serve React app for API routes
-    if (req.path.startsWith('/api/')) {
-        return res.status(404).json({ 
-            success: false, 
-            message: 'API endpoint not found' 
-        });
-    }
-    
-    // Serve React's index.html for all other routes
-    res.sendFile(path.join(publicPath, 'index.html'));
-});
-
-// Mount modular API routers
+// Mount modular API routers (MUST be before React Router fallback)
 app.use('/api/auth', authRouter);
 app.use('/api/auth-new', authNewRouter);
 app.use('/api/students', studentRouter);
@@ -110,6 +101,29 @@ app.use('/api/payments', paymentRouter);
 app.use('/api/dashboard', dashboardRouter);
 app.use('/api/notifications', notificationsRouter);
 app.use('/api/bus-status', busStatusRouter);
+
+// React Router fallback - MUST be after all API routes
+app.get('*', (req, res) => {
+    // Don't serve React app for API routes
+    if (req.path.startsWith('/api/')) {
+        return res.status(404).json({ 
+            success: false, 
+            message: 'API endpoint not found' 
+        });
+    }
+    
+    // Serve React's index.html for all other routes (if it exists)
+    const indexPath = path.join(staticPath, 'index.html');
+    if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+    } else {
+        res.json({ 
+            success: true, 
+            message: 'API Server is running. Frontend not built yet.',
+            api: '/api/health'
+        });
+    }
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {
