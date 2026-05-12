@@ -81,21 +81,12 @@ app.use(express.static(staticPath, {
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-    const healthCheck = {
+    res.json({ 
         success: true, 
         message: 'Server is running',
         timestamp: new Date().toISOString(),
-        environment: process.env.NODE_ENV || 'development',
-        version: '2.0.0',
-        uptime: process.uptime(),
-        database: process.env.DB_TYPE || 'sqlite',
-        memory: {
-            used: Math.round(process.memoryUsage().heapUsed / 1024 / 1024 * 100) / 100,
-            total: Math.round(process.memoryUsage().heapTotal / 1024 / 1024 * 100) / 100
-        }
-    };
-    
-    res.status(200).json(healthCheck);
+        environment: process.env.NODE_ENV || 'development'
+    });
 });
 
 // Mount modular API routers (MUST be before React Router fallback)
