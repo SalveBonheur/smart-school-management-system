@@ -4,7 +4,7 @@ services:
     name: smart-school-transport
     env: node
     plan: free
-    buildCommand: "npm run build:prod"
+    buildCommand: "npm install && cd client && npm install && cd .. && npm run build:prod"
     startCommand: "npm start"
     healthCheckPath: /api/health
     autoDeploy: true
