@@ -149,26 +149,32 @@ const RegisterPage = () => {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 flex items-center justify-center p-4 relative overflow-hidden">
+      <div className="min-h-screen bg-black flex items-center justify-center p-4 relative overflow-hidden">
+        {/* School Bus Background Image */}
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30" style={{
+          backgroundImage: 'url("https://images.unsplash.com/photo-1557223562-6c77ef16210f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80")'
+        }}></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-gray-900/80 to-black/90"></div>
+        
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gray-700 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gray-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
         </div>
 
         <div className="w-full max-w-md relative z-10">
-          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl text-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+          <div className="bg-gray-900/60 backdrop-blur-lg rounded-3xl p-8 border border-gray-700/50 shadow-2xl text-center">
+            <div className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg border border-gray-600">
               <FaUser className="w-8 h-8 text-white" />
             </div>
             <h2 className="text-2xl font-bold text-white mb-2">Registration Successful!</h2>
-            <p className="text-blue-200 mb-6">
+            <p className="text-gray-300 mb-6">
               {activeTab === 'driver' 
                 ? 'Your driver account has been created successfully. Taking you to your dashboard...'
                 : 'Your parent account has been created successfully. Taking you to your dashboard...'
               }
             </p>
-            <p className="text-blue-300 text-sm">
+            <p className="text-gray-400 text-sm">
               Redirecting to your dashboard...
             </p>
           </div>
@@ -178,12 +184,18 @@ const RegisterPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-black flex items-center justify-center p-4 relative overflow-hidden">
+      {/* School Bus Background Image */}
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30" style={{
+        backgroundImage: 'url("https://images.unsplash.com/photo-1557223562-6c77ef16210f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80")'
+      }}></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-gray-900/80 to-black/90"></div>
+      
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gray-700 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gray-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gray-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
       </div>
 
       <div className="w-full max-w-4xl mx-auto relative z-10">
@@ -191,7 +203,7 @@ const RegisterPage = () => {
         <div className="mb-6">
           <Link 
             to="/login" 
-            className="inline-flex items-center gap-2 text-blue-200 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
           >
             <FaArrowLeft className="w-4 h-4" />
             Back to Login
@@ -199,13 +211,13 @@ const RegisterPage = () => {
         </div>
 
         {/* Registration Type Selection */}
-        <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl mb-6">
+        <div className="bg-gray-900/60 backdrop-blur-lg rounded-3xl p-8 border border-gray-700/50 shadow-2xl mb-6">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+            <div className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg border border-gray-600">
               <FaGraduationCap className="w-8 h-8 text-white" />
             </div>
             <h2 className="text-2xl font-bold text-white mb-2">Create Account</h2>
-            <p className="text-blue-200">Choose your registration type</p>
+            <p className="text-gray-300">Choose your registration type</p>
           </div>
 
           {/* Tabs */}
@@ -221,27 +233,27 @@ const RegisterPage = () => {
                   }}
                   className={`p-6 rounded-2xl border-2 transition-all duration-200 ${
                     activeTab === tab.id
-                      ? 'bg-white/20 border-blue-400 shadow-lg'
-                      : 'bg-white/5 border-white/20 hover:bg-white/10 hover:border-white/30'
+                      ? 'bg-gray-800/50 border-gray-500 shadow-lg'
+                      : 'bg-gray-800/30 border-gray-700 hover:bg-gray-800/40 hover:border-gray-600'
                   }`}
                 >
                   <div className="flex flex-col items-center text-center gap-3">
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
                       activeTab === tab.id
-                        ? 'bg-gradient-to-br from-blue-400 to-blue-600'
-                        : 'bg-white/10'
+                        ? 'bg-gradient-to-br from-gray-700 to-gray-900 border border-gray-600'
+                        : 'bg-gray-800/50'
                     }`}>
                       <Icon className={`w-6 h-6 ${
-                        activeTab === tab.id ? 'text-white' : 'text-blue-300'
+                        activeTab === tab.id ? 'text-white' : 'text-gray-400'
                       }`} />
                     </div>
                     <div>
                       <h3 className={`font-semibold ${
-                        activeTab === tab.id ? 'text-white' : 'text-blue-200'
+                        activeTab === tab.id ? 'text-white' : 'text-gray-300'
                       }`}>
                         {tab.label}
                       </h3>
-                      <p className="text-sm text-blue-300 mt-1">{tab.description}</p>
+                      <p className="text-sm text-gray-400 mt-1">{tab.description}</p>
                     </div>
                   </div>
                 </button>
@@ -261,12 +273,12 @@ const RegisterPage = () => {
             <form onSubmit={handleDriverSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-blue-100 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Full Name
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <FaUser className="h-5 w-5 text-blue-300" />
+                      <FaUser className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type="text"
@@ -274,19 +286,19 @@ const RegisterPage = () => {
                       value={driverData.fullName}
                       onChange={handleDriverChange}
                       placeholder="Enter your full name"
-                      className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all"
+                      className="w-full pl-12 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                       required
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-blue-100 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Email Address
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <FaEnvelope className="h-5 w-5 text-blue-300" />
+                      <FaEnvelope className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type="email"
@@ -294,19 +306,19 @@ const RegisterPage = () => {
                       value={driverData.email}
                       onChange={handleDriverChange}
                       placeholder="Enter your email"
-                      className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all"
+                      className="w-full pl-12 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                       required
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-blue-100 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Phone Number
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <FaPhone className="h-5 w-5 text-blue-300" />
+                      <FaPhone className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type="tel"
@@ -314,19 +326,19 @@ const RegisterPage = () => {
                       value={driverData.phone}
                       onChange={handleDriverChange}
                       placeholder="Enter your phone number"
-                      className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all"
+                      className="w-full pl-12 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                       required
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-blue-100 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     License Number
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <FaIdCard className="h-5 w-5 text-blue-300" />
+                      <FaIdCard className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type="text"
@@ -334,7 +346,7 @@ const RegisterPage = () => {
                       value={driverData.licenseNumber}
                       onChange={handleDriverChange}
                       placeholder="Enter your license number"
-                      className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all"
+                      className="w-full pl-12 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                       required
                     />
                   </div>
@@ -342,12 +354,12 @@ const RegisterPage = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-blue-100 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Address
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-start pt-3 pointer-events-none">
-                    <FaMapMarkerAlt className="h-5 w-5 text-blue-300" />
+                    <FaMapMarkerAlt className="h-5 w-5 text-gray-400" />
                   </div>
                   <textarea
                     name="address"
@@ -355,7 +367,7 @@ const RegisterPage = () => {
                     onChange={handleDriverChange}
                     placeholder="Enter your address"
                     rows="3"
-                    className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all resize-none"
+                    className="w-full pl-12 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all resize-none"
                     required
                   />
                 </div>
@@ -363,12 +375,12 @@ const RegisterPage = () => {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-blue-100 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Password
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <FaLock className="h-5 w-5 text-blue-300" />
+                      <FaLock className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type={showPassword ? 'text' : 'password'}
@@ -376,7 +388,7 @@ const RegisterPage = () => {
                       value={driverData.password}
                       onChange={handleDriverChange}
                       placeholder="Enter your password"
-                      className="w-full pl-12 pr-12 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all"
+                      className="w-full pl-12 pr-12 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                       required
                     />
                     <button
@@ -385,21 +397,21 @@ const RegisterPage = () => {
                       className="absolute inset-y-0 right-0 pr-4 flex items-center"
                     >
                       {showPassword ? (
-                        <FaEyeSlash className="h-5 w-5 text-blue-300 hover:text-white transition-colors" />
+                        <FaEyeSlash className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
                       ) : (
-                        <FaEye className="h-5 w-5 text-blue-300 hover:text-white transition-colors" />
+                        <FaEye className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
                       )}
                     </button>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-blue-100 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Confirm Password
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <FaLock className="h-5 w-5 text-blue-300" />
+                      <FaLock className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type={showConfirmPassword ? 'text' : 'password'}
@@ -407,7 +419,7 @@ const RegisterPage = () => {
                       value={driverData.confirmPassword}
                       onChange={handleDriverChange}
                       placeholder="Confirm your password"
-                      className="w-full pl-12 pr-12 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all"
+                      className="w-full pl-12 pr-12 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                       required
                     />
                     <button
@@ -416,9 +428,9 @@ const RegisterPage = () => {
                       className="absolute inset-y-0 right-0 pr-4 flex items-center"
                     >
                       {showConfirmPassword ? (
-                        <FaEyeSlash className="h-5 w-5 text-blue-300 hover:text-white transition-colors" />
+                        <FaEyeSlash className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
                       ) : (
-                        <FaEye className="h-5 w-5 text-blue-300 hover:text-white transition-colors" />
+                        <FaEye className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
                       )}
                     </button>
                   </div>
@@ -428,7 +440,7 @@ const RegisterPage = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="w-full bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white font-semibold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none border border-gray-600"
               >
                 {loading ? (
                   <>
@@ -446,12 +458,12 @@ const RegisterPage = () => {
             <form onSubmit={handleParentSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-blue-100 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Full Name
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <FaUser className="h-5 w-5 text-blue-300" />
+                      <FaUser className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type="text"
@@ -459,19 +471,19 @@ const RegisterPage = () => {
                       value={parentData.fullName}
                       onChange={handleParentChange}
                       placeholder="Enter your full name"
-                      className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all"
+                      className="w-full pl-12 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                       required
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-blue-100 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Email Address
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <FaEnvelope className="h-5 w-5 text-blue-300" />
+                      <FaEnvelope className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type="email"
@@ -479,19 +491,19 @@ const RegisterPage = () => {
                       value={parentData.email}
                       onChange={handleParentChange}
                       placeholder="Enter your email"
-                      className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all"
+                      className="w-full pl-12 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                       required
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-blue-100 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Phone Number
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <FaPhone className="h-5 w-5 text-blue-300" />
+                      <FaPhone className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type="tel"
@@ -499,48 +511,48 @@ const RegisterPage = () => {
                       value={parentData.phone}
                       onChange={handleParentChange}
                       placeholder="Enter your phone number"
-                      className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all"
+                      className="w-full pl-12 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                       required
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-blue-100 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Child's Grade (Optional)
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <FaGraduationCap className="h-5 w-5 text-blue-300" />
+                      <FaGraduationCap className="h-5 w-5 text-gray-400" />
                     </div>
                     <select
-                      className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all"
+                      className="w-full pl-12 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                     >
-                      <option value="" className="bg-gray-800">Select grade</option>
-                      <option value="1" className="bg-gray-800">Grade 1</option>
-                      <option value="2" className="bg-gray-800">Grade 2</option>
-                      <option value="3" className="bg-gray-800">Grade 3</option>
-                      <option value="4" className="bg-gray-800">Grade 4</option>
-                      <option value="5" className="bg-gray-800">Grade 5</option>
-                      <option value="6" className="bg-gray-800">Grade 6</option>
-                      <option value="7" className="bg-gray-800">Grade 7</option>
-                      <option value="8" className="bg-gray-800">Grade 8</option>
-                      <option value="9" className="bg-gray-800">Grade 9</option>
-                      <option value="10" className="bg-gray-800">Grade 10</option>
-                      <option value="11" className="bg-gray-800">Grade 11</option>
-                      <option value="12" className="bg-gray-800">Grade 12</option>
+                      <option value="" className="bg-gray-900">Select grade</option>
+                      <option value="1" className="bg-gray-900">Grade 1</option>
+                      <option value="2" className="bg-gray-900">Grade 2</option>
+                      <option value="3" className="bg-gray-900">Grade 3</option>
+                      <option value="4" className="bg-gray-900">Grade 4</option>
+                      <option value="5" className="bg-gray-900">Grade 5</option>
+                      <option value="6" className="bg-gray-900">Grade 6</option>
+                      <option value="7" className="bg-gray-900">Grade 7</option>
+                      <option value="8" className="bg-gray-900">Grade 8</option>
+                      <option value="9" className="bg-gray-900">Grade 9</option>
+                      <option value="10" className="bg-gray-900">Grade 10</option>
+                      <option value="11" className="bg-gray-900">Grade 11</option>
+                      <option value="12" className="bg-gray-900">Grade 12</option>
                     </select>
                   </div>
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-blue-100 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Address
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-start pt-3 pointer-events-none">
-                    <FaMapMarkerAlt className="h-5 w-5 text-blue-300" />
+                    <FaMapMarkerAlt className="h-5 w-5 text-gray-400" />
                   </div>
                   <textarea
                     name="address"
@@ -548,7 +560,7 @@ const RegisterPage = () => {
                     onChange={handleParentChange}
                     placeholder="Enter your address"
                     rows="3"
-                    className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all resize-none"
+                    className="w-full pl-12 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all resize-none"
                     required
                   />
                 </div>
@@ -556,12 +568,12 @@ const RegisterPage = () => {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-blue-100 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Password
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <FaLock className="h-5 w-5 text-blue-300" />
+                      <FaLock className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type={showPassword ? 'text' : 'password'}
@@ -569,7 +581,7 @@ const RegisterPage = () => {
                       value={parentData.password}
                       onChange={handleParentChange}
                       placeholder="Enter your password"
-                      className="w-full pl-12 pr-12 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all"
+                      className="w-full pl-12 pr-12 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                       required
                     />
                     <button
@@ -578,21 +590,21 @@ const RegisterPage = () => {
                       className="absolute inset-y-0 right-0 pr-4 flex items-center"
                     >
                       {showPassword ? (
-                        <FaEyeSlash className="h-5 w-5 text-blue-300 hover:text-white transition-colors" />
+                        <FaEyeSlash className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
                       ) : (
-                        <FaEye className="h-5 w-5 text-blue-300 hover:text-white transition-colors" />
+                        <FaEye className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
                       )}
                     </button>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-blue-100 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Confirm Password
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <FaLock className="h-5 w-5 text-blue-300" />
+                      <FaLock className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type={showConfirmPassword ? 'text' : 'password'}
@@ -600,7 +612,7 @@ const RegisterPage = () => {
                       value={parentData.confirmPassword}
                       onChange={handleParentChange}
                       placeholder="Confirm your password"
-                      className="w-full pl-12 pr-12 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all"
+                      className="w-full pl-12 pr-12 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                       required
                     />
                     <button
@@ -609,9 +621,9 @@ const RegisterPage = () => {
                       className="absolute inset-y-0 right-0 pr-4 flex items-center"
                     >
                       {showConfirmPassword ? (
-                        <FaEyeSlash className="h-5 w-5 text-blue-300 hover:text-white transition-colors" />
+                        <FaEyeSlash className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
                       ) : (
-                        <FaEye className="h-5 w-5 text-blue-300 hover:text-white transition-colors" />
+                        <FaEye className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
                       )}
                     </button>
                   </div>
@@ -621,7 +633,7 @@ const RegisterPage = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="w-full bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white font-semibold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none border border-gray-600"
               >
                 {loading ? (
                   <>
@@ -636,11 +648,11 @@ const RegisterPage = () => {
           )}
 
           {/* Login Link */}
-          <div className="mt-6 text-center text-sm text-blue-200">
+          <div className="mt-6 text-center text-sm text-gray-300">
             Already have an account?{' '}
             <Link 
               to="/login" 
-              className="text-blue-300 hover:text-white font-medium transition-colors"
+              className="text-gray-400 hover:text-white font-medium transition-colors"
             >
               Sign in here
             </Link>

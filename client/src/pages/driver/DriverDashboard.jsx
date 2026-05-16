@@ -116,8 +116,8 @@ const DriverDashboard = () => {
                 <p className="font-medium text-gray-900">Mark Attendance</p>
                 <p className="text-sm text-gray-500">Record student pickup/drop</p>
               </a>
-              <a href="/driver/schedule" className="p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors">
-                <FaClock className="w-8 h-8 text-blue-600 mb-2" />
+              <a href="/driver/schedule" className="p-4 bg-gray-100 rounded-xl hover:bg-gray-200 transition-colors">
+                <FaClock className="w-8 h-8 text-gray-700 mb-2" />
                 <p className="font-medium text-gray-900">View Schedule</p>
                 <p className="text-sm text-gray-500">Check your trips</p>
               </a>

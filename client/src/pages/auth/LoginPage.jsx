@@ -67,12 +67,18 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-black flex items-center justify-center p-4 relative overflow-hidden">
+      {/* School Bus Background Image */}
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30" style={{
+        backgroundImage: 'url("https://images.unsplash.com/photo-1557223562-6c77ef16210f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80")'
+      }}></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-gray-900/80 to-black/90"></div>
+      
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gray-700 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gray-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gray-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
       </div>
 
       <div className="w-full max-w-6xl mx-auto relative z-10">
@@ -80,19 +86,19 @@ const LoginPage = () => {
           
           {/* Left Side - Illustration and Info */}
           <div className="hidden md:block text-white">
-            <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl">
+            <div className="bg-gray-900/60 backdrop-blur-lg rounded-3xl p-8 border border-gray-700/50 shadow-2xl">
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                <div className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl flex items-center justify-center shadow-lg border border-gray-600">
                   <FaBus className="w-8 h-8 text-white" />
                 </div>
                 <div>
                   <h1 className="text-3xl font-bold">Smart School</h1>
-                  <p className="text-blue-200">Transport Management</p>
+                  <p className="text-gray-300">Transport Management</p>
                 </div>
               </div>
 
               <h2 className="text-2xl font-bold mb-6">Safe & Efficient School Transportation</h2>
-              <p className="text-blue-100 mb-8 leading-relaxed">
+              <p className="text-gray-300 mb-8 leading-relaxed">
                 Experience the future of school transportation with our comprehensive management system. 
                 Track buses, monitor attendance, manage payments, and ensure student safety all in one platform.
               </p>
@@ -100,59 +106,59 @@ const LoginPage = () => {
               {/* Features */}
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
-                    <FaShieldAlt className="w-5 h-5 text-green-400" />
+                  <div className="w-10 h-10 bg-gray-700/30 rounded-lg flex items-center justify-center border border-gray-600">
+                    <FaShieldAlt className="w-5 h-5 text-gray-300" />
                   </div>
                   <div>
                     <h3 className="font-semibold">Real-time Tracking</h3>
-                    <p className="text-sm text-blue-200">Monitor buses live</p>
+                    <p className="text-sm text-gray-400">Monitor buses live</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
-                    <FaUsers className="w-5 h-5 text-purple-400" />
+                  <div className="w-10 h-10 bg-gray-700/30 rounded-lg flex items-center justify-center border border-gray-600">
+                    <FaUsers className="w-5 h-5 text-gray-300" />
                   </div>
                   <div>
                     <h3 className="font-semibold">Smart Attendance</h3>
-                    <p className="text-sm text-blue-200">QR-based check-in system</p>
+                    <p className="text-sm text-gray-400">QR-based check-in system</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
-                    <FaRoute className="w-5 h-5 text-orange-400" />
+                  <div className="w-10 h-10 bg-gray-700/30 rounded-lg flex items-center justify-center border border-gray-600">
+                    <FaRoute className="w-5 h-5 text-gray-300" />
                   </div>
                   <div>
                     <h3 className="font-semibold">Route Optimization</h3>
-                    <p className="text-sm text-blue-200">Efficient bus routes</p>
+                    <p className="text-sm text-gray-400">Efficient bus routes</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-pink-500/20 rounded-lg flex items-center justify-center">
-                    <FaChartLine className="w-5 h-5 text-pink-400" />
+                  <div className="w-10 h-10 bg-gray-700/30 rounded-lg flex items-center justify-center border border-gray-600">
+                    <FaChartLine className="w-5 h-5 text-gray-300" />
                   </div>
                   <div>
                     <h3 className="font-semibold">Analytics Dashboard</h3>
-                    <p className="text-sm text-blue-200">Comprehensive insights</p>
+                    <p className="text-sm text-gray-400">Comprehensive insights</p>
                   </div>
                 </div>
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-white/20">
+              <div className="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-gray-700">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-300">500+</div>
-                  <div className="text-xs text-blue-200">Schools</div>
+                  <div className="text-2xl font-bold text-gray-200">500+</div>
+                  <div className="text-xs text-gray-400">Schools</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-green-300">50K+</div>
-                  <div className="text-xs text-blue-200">Students</div>
+                  <div className="text-2xl font-bold text-gray-200">50K+</div>
+                  <div className="text-xs text-gray-400">Students</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-purple-300">99.9%</div>
-                  <div className="text-xs text-blue-200">Uptime</div>
+                  <div className="text-2xl font-bold text-gray-200">99.9%</div>
+                  <div className="text-xs text-gray-400">Uptime</div>
                 </div>
               </div>
             </div>
@@ -163,24 +169,24 @@ const LoginPage = () => {
             {/* Mobile Logo */}
             <div className="md:hidden text-center mb-8">
               <Link to="/" className="inline-flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-gray-700 to-gray-900 rounded-xl flex items-center justify-center border border-gray-600">
                   <FaBus className="w-7 h-7 text-white" />
                 </div>
                 <div className="text-left">
                   <h1 className="font-bold text-xl text-white">Smart School</h1>
-                  <p className="text-sm text-blue-200">Transport System</p>
+                  <p className="text-sm text-gray-300">Transport System</p>
                 </div>
               </Link>
             </div>
 
             {/* Login Card */}
-            <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl">
+            <div className="bg-gray-900/60 backdrop-blur-lg rounded-3xl p-8 border border-gray-700/50 shadow-2xl">
               <div className="text-center mb-8">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <div className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg border border-gray-600">
                   <FaGraduationCap className="w-8 h-8 text-white" />
                 </div>
                 <h2 className="text-2xl font-bold text-white mb-2">Welcome Back</h2>
-                <p className="text-blue-200">Sign in to access your dashboard</p>
+                <p className="text-gray-300">Sign in to access your dashboard</p>
               </div>
 
               {/* Error Alert */}
@@ -193,12 +199,12 @@ const LoginPage = () => {
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-blue-100 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Email Address
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <FaEnvelope className="h-5 w-5 text-blue-300" />
+                      <FaEnvelope className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type="email"
@@ -206,19 +212,19 @@ const LoginPage = () => {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="Enter your email"
-                      className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all"
+                      className="w-full pl-12 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                       required
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-blue-100 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Password
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <FaLock className="h-5 w-5 text-blue-300" />
+                      <FaLock className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
                       type={showPassword ? 'text' : 'password'}
@@ -226,7 +232,7 @@ const LoginPage = () => {
                       value={formData.password}
                       onChange={handleChange}
                       placeholder="Enter your password"
-                      className="w-full pl-12 pr-12 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all"
+                      className="w-full pl-12 pr-12 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                       required
                     />
                     <button
@@ -235,9 +241,9 @@ const LoginPage = () => {
                       className="absolute inset-y-0 right-0 pr-4 flex items-center"
                     >
                       {showPassword ? (
-                        <FaEyeSlash className="h-5 w-5 text-blue-300 hover:text-white transition-colors" />
+                        <FaEyeSlash className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
                       ) : (
-                        <FaEye className="h-5 w-5 text-blue-300 hover:text-white transition-colors" />
+                        <FaEye className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
                       )}
                     </button>
                   </div>
@@ -247,11 +253,11 @@ const LoginPage = () => {
                   <label className="flex items-center">
                     <input 
                       type="checkbox" 
-                      className="rounded border-white/20 bg-white/10 text-blue-600 focus:ring-blue-400 focus:ring-offset-0" 
+                      className="rounded border-gray-600 bg-gray-800 text-gray-500 focus:ring-gray-500 focus:ring-offset-0" 
                     />
-                    <span className="ml-2 text-blue-200">Remember me</span>
+                    <span className="ml-2 text-gray-300">Remember me</span>
                   </label>
-                  <a href="#" className="text-blue-300 hover:text-white font-medium transition-colors">
+                  <a href="#" className="text-gray-400 hover:text-white font-medium transition-colors">
                     Forgot password?
                   </a>
                 </div>
@@ -259,7 +265,7 @@ const LoginPage = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="w-full bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white font-semibold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none border border-gray-600"
                 >
                   {loading ? (
                     <>
@@ -273,11 +279,11 @@ const LoginPage = () => {
               </form>
 
               {/* Register Link */}
-              <div className="mt-6 text-center text-sm text-blue-200">
+              <div className="mt-6 text-center text-sm text-gray-300">
                 Don't have an account?{' '}
                 <Link 
                   to="/register" 
-                  className="text-blue-300 hover:text-white font-medium transition-colors"
+                  className="text-gray-400 hover:text-white font-medium transition-colors"
                 >
                   Register here
                 </Link>
@@ -287,7 +293,7 @@ const LoginPage = () => {
               <div className="mt-4 text-center">
                 <Link 
                   to="/" 
-                  className="text-sm text-blue-300 hover:text-white transition-colors inline-flex items-center gap-1"
+                  className="text-sm text-gray-400 hover:text-white transition-colors inline-flex items-center gap-1"
                 >
                   ← Back to home
                 </Link>

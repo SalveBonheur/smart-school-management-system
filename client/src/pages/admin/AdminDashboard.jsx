@@ -139,15 +139,15 @@ const AdminDashboard = () => {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-2xl p-8 text-white relative overflow-hidden">
+      <div className="bg-gradient-to-r from-gray-800 via-gray-900 to-black rounded-2xl p-8 text-white relative overflow-hidden border border-gray-700">
         <div className="absolute inset-0 bg-black/10"></div>
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+        <div className="absolute top-0 right-0 w-64 h-64 bg-gray-700/20 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-gray-700/20 rounded-full translate-y-1/2 -translate-x-1/2"></div>
         <div className="relative z-10">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold mb-2">Analytics Dashboard</h1>
-              <p className="text-blue-100 text-lg">Real-time insights into your school transport system.</p>
+              <p className="text-gray-300 text-lg">Real-time insights into your school transport system.</p>
             </div>
             <div className="hidden md:flex items-center gap-4">
               <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-xl">

@@ -75,43 +75,55 @@ const DriverRegisterPage = () => {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-blue-50 flex items-center justify-center p-4">
-        <div className="w-full max-w-md bg-white rounded-2xl shadow-soft p-8 text-center">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <FaBus className="w-8 h-8 text-green-600" />
+      <div className="min-h-screen bg-black flex items-center justify-center p-4 relative overflow-hidden">
+        {/* School Bus Background Image */}
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30" style={{
+          backgroundImage: 'url("https://images.unsplash.com/photo-1557223562-6c77ef16210f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80")'
+        }}></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-gray-900/80 to-black/90"></div>
+        
+        <div className="w-full max-w-md bg-gray-900/60 backdrop-blur-lg rounded-2xl p-8 border border-gray-700/50 shadow-2xl text-center relative z-10">
+          <div className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg border border-gray-600">
+            <FaBus className="w-8 h-8 text-white" />
           </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Registration Successful!</h2>
-          <p className="text-gray-600 mb-4">
+          <h2 className="text-2xl font-bold text-gray-100 mb-2">Registration Successful!</h2>
+          <p className="text-gray-300 mb-4">
             Your driver account has been created successfully. Taking you to your dashboard...
           </p>
-          <p className="text-sm text-gray-500">Redirecting to your dashboard...</p>
+          <p className="text-sm text-gray-400">Redirecting to your dashboard...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-blue-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-lg">
+    <div className="min-h-screen bg-black flex items-center justify-center p-4 relative overflow-hidden">
+      {/* School Bus Background Image */}
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30" style={{
+        backgroundImage: 'url("https://images.unsplash.com/photo-1557223562-6c77ef16210f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80")'
+      }}></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-gray-900/80 to-black/90"></div>
+      
+      <div className="w-full max-w-lg relative z-10">
         {/* Logo */}
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-3">
-            <div className="w-12 h-12 bg-primary-600 rounded-xl flex items-center justify-center">
+            <div className="w-12 h-12 bg-gradient-to-br from-gray-700 to-gray-900 rounded-xl flex items-center justify-center border border-gray-600">
               <FaBus className="w-7 h-7 text-white" />
             </div>
             <div className="text-left">
-              <h1 className="font-bold text-xl text-gray-900">Smart School</h1>
-              <p className="text-sm text-gray-500">Transport System</p>
+              <h1 className="font-bold text-xl text-white">Smart School</h1>
+              <p className="text-sm text-gray-300">Transport System</p>
             </div>
           </Link>
         </div>
 
         {/* Registration Card */}
-        <div className="bg-white rounded-2xl shadow-soft p-8">
-          <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">
+        <div className="bg-gray-900/60 backdrop-blur-lg rounded-2xl p-8 border border-gray-700/50 shadow-2xl">
+          <h2 className="text-2xl font-bold text-center text-white mb-2">
             Driver Registration
           </h2>
-          <p className="text-center text-gray-500 mb-6">
+          <p className="text-center text-gray-300 mb-6">
             Apply to become a school bus driver
           </p>
 
@@ -123,7 +135,7 @@ const DriverRegisterPage = () => {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="form-label">Full Name</label>
+              <label className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FaUser className="h-4 w-4 text-gray-400" />
@@ -134,7 +146,7 @@ const DriverRegisterPage = () => {
                   value={formData.fullName}
                   onChange={handleChange}
                   placeholder="Enter your full name"
-                  className="form-input pl-10"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                   required
                 />
               </div>
@@ -142,7 +154,7 @@ const DriverRegisterPage = () => {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="form-label">Email</label>
+                <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <FaEnvelope className="h-4 w-4 text-gray-400" />
@@ -153,13 +165,13 @@ const DriverRegisterPage = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Email address"
-                    className="form-input pl-10"
+                    className="w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                     required
                   />
                 </div>
               </div>
               <div>
-                <label className="form-label">Phone</label>
+                <label className="block text-sm font-medium text-gray-300 mb-2">Phone</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <FaPhone className="h-4 w-4 text-gray-400" />
@@ -170,7 +182,7 @@ const DriverRegisterPage = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="Phone number"
-                    className="form-input pl-10"
+                    className="w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                     required
                   />
                 </div>
@@ -178,7 +190,7 @@ const DriverRegisterPage = () => {
             </div>
 
             <div>
-              <label className="form-label">Driver's License Number</label>
+              <label className="block text-sm font-medium text-gray-300 mb-2">Driver's License Number</label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FaIdCard className="h-4 w-4 text-gray-400" />
@@ -189,16 +201,16 @@ const DriverRegisterPage = () => {
                   value={formData.licenseNumber}
                   onChange={handleChange}
                   placeholder="License number"
-                  className="form-input pl-10"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                   required
                 />
               </div>
             </div>
 
             <div>
-              <label className="form-label">Address</label>
+              <label className="block text-sm font-medium text-gray-300 mb-2">Address</label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-start pt-3 pointer-events-none">
                   <FaMapMarkerAlt className="h-4 w-4 text-gray-400" />
                 </div>
                 <textarea
@@ -206,7 +218,7 @@ const DriverRegisterPage = () => {
                   value={formData.address}
                   onChange={handleChange}
                   placeholder="Your address"
-                  className="form-input pl-10"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all resize-none"
                   rows={3}
                 />
               </div>
@@ -214,7 +226,7 @@ const DriverRegisterPage = () => {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="form-label">Password</label>
+                <label className="block text-sm font-medium text-gray-300 mb-2">Password</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <FaLock className="h-4 w-4 text-gray-400" />
@@ -225,7 +237,7 @@ const DriverRegisterPage = () => {
                     value={formData.password}
                     onChange={handleChange}
                     placeholder="Password"
-                    className="form-input pl-10 pr-10"
+                    className="w-full pl-10 pr-10 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                     required
                   />
                   <button
@@ -242,14 +254,14 @@ const DriverRegisterPage = () => {
                 </div>
               </div>
               <div>
-                <label className="form-label">Confirm Password</label>
+                <label className="block text-sm font-medium text-gray-300 mb-2">Confirm Password</label>
                 <input
                   type={showPassword ? 'text' : 'password'}
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   placeholder="Confirm password"
-                  className="form-input"
+                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent backdrop-blur-sm transition-all"
                   required
                 />
               </div>
@@ -258,7 +270,7 @@ const DriverRegisterPage = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full btn-primary py-3 text-lg flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white font-semibold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none border border-gray-600"
             >
               {loading ? (
                 <>
@@ -271,15 +283,15 @@ const DriverRegisterPage = () => {
             </button>
           </form>
 
-          <div className="mt-6 text-center text-sm text-gray-600">
+          <div className="mt-6 text-center text-sm text-gray-300">
             Already have an account?{' '}
-            <Link to="/login" className="text-primary-600 hover:text-primary-700 font-medium">
+            <Link to="/login" className="text-gray-400 hover:text-white font-medium">
               Sign in
             </Link>
           </div>
 
           <div className="mt-4 text-center">
-            <Link to="/" className="text-sm text-gray-500 hover:text-gray-700">
+            <Link to="/" className="text-sm text-gray-400 hover:text-white">
               ← Back to home
             </Link>
           </div>

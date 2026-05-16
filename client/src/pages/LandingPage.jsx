@@ -110,11 +110,17 @@ const LandingPage = () => {
 
       {/* Hero Section */}
       <section id="home" className="relative bg-black pt-20 pb-32 overflow-hidden">
+        {/* School Bus Background Image */}
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20" style={{
+          backgroundImage: 'url("https://images.unsplash.com/photo-1557223562-6c77ef16210f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80")'
+        }}></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-gray-900/90 to-black/95"></div>
+        
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full filter blur-3xl opacity-15"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full filter blur-3xl opacity-15"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full filter blur-3xl opacity-10"></div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gray-700 rounded-full filter blur-3xl opacity-15"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gray-600 rounded-full filter blur-3xl opacity-15"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gray-500 rounded-full filter blur-3xl opacity-10"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
